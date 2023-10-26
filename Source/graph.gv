@@ -3,6 +3,7 @@ ROOTNODE -- a
 ROOTNODE -- b
 ROOTNODE -- c
 ROOTNODE -- d
+ROOTNODE -- t
 a -- aa
 a -- ab
 a -- ac
@@ -10,4 +11,11 @@ b -- ba
 d -- dd
 dd -- ddd
 ddd -- dddd
+t -- te
+te -- tes
+tes -- test
+test -- testw
+testw -- testwo
+testwo -- testwor
+testwor -- testword
 }

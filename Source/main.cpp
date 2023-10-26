@@ -10,6 +10,7 @@ int main(int argc, char*argv[]){
     tree.insert("ac",false);
     tree.insert("ba",false);
     tree.insert("dddd",false);
+    tree.insert("testword",true);
     int test = 0;
     tree.outputDOTfile();
 }

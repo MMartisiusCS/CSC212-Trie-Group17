@@ -12,10 +12,10 @@ TrieNode::~TrieNode()
 
 bool TrieNode::stringMatch(std::string a, std::string b)
 {
-    return false;
+
 }
 
-TrieNode *TrieTree::insert(std::string nodeString, bool isEnglishWord)
+TrieNode *TrieTree::insertPrivate(std::string nodeString, bool isEnglishWord)
 {
 
     return nullptr;
@@ -30,13 +30,15 @@ TrieTree::~TrieTree()
 {
 }
 
-void *TrieTree::insert(std::string nodeString, bool isEnglishWord)
+void TrieTree::insert(std::string nodeString, bool isEnglishWord)
 {
     for(int i = 1; i < nodeString.size();i++){
         std::string strToInsert = nodeString.substr (0,i);
     }
-    return nullptr;
+    return;
 }
-bool TrieTree::search(int nodeString) {
+
+bool TrieTree::search(std::string nodeString)
+{
     return false;
 }

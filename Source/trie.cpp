@@ -4,6 +4,7 @@ TrieNode::TrieNode(std::string nodeString, bool isEnglishWord){
     this->nodeString = nodeString;
     this->isEnglishWord = isEnglishWord;
     this->branches = {};
+    this->height = 0;
 }
 
 TrieNode::~TrieNode()

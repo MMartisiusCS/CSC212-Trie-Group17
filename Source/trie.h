@@ -7,6 +7,7 @@ class TrieNode{
         std::string nodeString;
         bool isEnglishWord;
         std::vector<TrieNode*> branches;
+        int height;
 
         friend class TrieTree;
     public:

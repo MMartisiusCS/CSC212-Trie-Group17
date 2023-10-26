@@ -24,3 +24,6 @@ TrieNode *TrieTree::insert(std::string nodeString, bool isEnglishWord)
 {
     return nullptr;
 }
+bool TrieTree::search(int nodeString) {
+    return false;
+}

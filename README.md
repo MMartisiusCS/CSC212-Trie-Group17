@@ -6,3 +6,4 @@ Google Doc: https://docs.google.com/document/d/1aIXSi-ceuWrmeGQbZBFSY8oBCYyYb8HH
 
 Joseph May
 Nathan Roy
+Nathan Lichtenfels

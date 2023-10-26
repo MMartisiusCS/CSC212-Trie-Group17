@@ -1,0 +1,13 @@
+graph TrieTreeGraph {
+ROOTNODE -- a
+ROOTNODE -- b
+ROOTNODE -- c
+ROOTNODE -- d
+a -- aa
+a -- ab
+a -- ac
+b -- ba
+d -- dd
+dd -- ddd
+ddd -- dddd
+}

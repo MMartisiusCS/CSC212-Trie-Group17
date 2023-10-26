@@ -8,23 +8,25 @@ class TrieNode{
         bool isEnglishWord;
         std::vector<TrieNode*> branches;
         int repeats = 0;
+        int height = 0;
 
         friend class TrieTree;
     public:
         TrieNode(std::string nodeString, bool isEnglishWord);
         ~TrieNode();
-        bool stringMatch(std::string a, std::string b);
+        bool stringMatch(std::string b);
 };
 
 class TrieTree{
     private:
         TrieNode* root;
-        TrieNode* insertPrivate(std::string nodeString, bool isEnglishWord);
+        TrieNode* insertPrivate(TrieNode* node,std::string nodeString, bool isEnglishWord);
         //int height(TrieNode* node);
         //void preorder(std::ostream& os, BSTNode* node);
         //void inorder(std::ostream& os, BSTNode* node);
         //void postorder(std::ostream& os, BSTNode* node);
         //void destroy(BSTNode* node);
+        std::string outputDOTfileRecursive(TrieNode* node);
     public:
         TrieTree();
         ~TrieTree();
@@ -35,4 +37,5 @@ class TrieTree{
         //void inorder(std::ostream& os);
         //void postorder(std::ostream& os);
         bool search(std::string nodeString);
+        void outputDOTfile();
 };

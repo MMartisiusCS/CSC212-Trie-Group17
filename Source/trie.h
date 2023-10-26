@@ -33,5 +33,5 @@ class TrieTree{
         //void preorder(std::ostream& os);
         //void inorder(std::ostream& os);
         //void postorder(std::ostream& os);
-        //bool search(std::string nodeString);
+        bool search(std::string nodeString);
 };

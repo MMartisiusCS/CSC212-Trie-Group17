@@ -74,10 +74,10 @@ std::string TrieTree::outputDOTfile(TrieNode *node,std::ofstream *outfile)
 {
     std::string outputString;
     //Add current node's branches to output
+    *outfile << outputString << "ROOTNODE_ [label=\"\"]";
     for (int i = 0; i < node->branches.size();i++){
         if (node->nodeString.length() == 0){
             *outfile << "ROOTNODE" << " -- " << node->branches[i]->nodeString << "\n";
-            *outfile << outputString << "ROOTNODE [label=\"\"]";
         } else {
             *outfile << node->nodeString << " -- " << node->branches[i]->nodeString << "\n";
         }

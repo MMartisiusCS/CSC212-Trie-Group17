@@ -70,20 +70,24 @@ TrieNode *TrieTree::insertPrivate(TrieNode* node, std::string nodeString, bool i
     return nullptr;
 }
 
-std::string TrieTree::outputDOTfileRecursive(TrieNode *node)
+std::string TrieTree::outputDOTfile(TrieNode *node,std::ofstream *outfile)
 {
     std::string outputString;
     //Add current node's branches to output
     for (int i = 0; i < node->branches.size();i++){
         if (node->nodeString.length() == 0){
-            outputString = outputString + "ROOTNODE" + " -- " + node->branches[i]->nodeString + "\n";
+            *outfile << "ROOTNODE" << " -- " << node->branches[i]->nodeString << "\n";
+            *outfile << outputString << "ROOTNODE [label=\"\"]";
         } else {
-            outputString = outputString + node->nodeString + " -- " + node->branches[i]->nodeString + "\n";
+            *outfile << node->nodeString << " -- " << node->branches[i]->nodeString << "\n";
+        }
+        if(node->branches[i]->isEnglishWord){
+            *outfile << node->branches[i]->nodeString << " [style=\"filled,dashed\"\nshape=box\nfontsize=20.0\nfillcolor=lightblue];\n";
         }
     }
     // call for each branch
     for (int i = 0; i < node->branches.size();i++){
-        outputString = outputString + outputDOTfileRecursive(node->branches[i]);
+        *outfile << outputDOTfile(node->branches[i], outfile);
     }
     return outputString;
 }
@@ -102,11 +106,7 @@ void TrieTree::insert(std::string nodeString, bool isEnglishWord)
     if(nodeString.size() > 1){
         for(int i = 1; i < nodeString.size();i++){
             std::string strToInsert = nodeString.substr (0,i);
-            if (i+1 == nodeString.size()){
-                insertPrivate(root,strToInsert,true);
-            } else {
-                insertPrivate(root,strToInsert,false);
-            }
+            insertPrivate(root,strToInsert,false);
         }
     }
     insertPrivate(root,nodeString,isEnglishWord);
@@ -120,9 +120,9 @@ bool TrieTree::search(std::string nodeString)
 
 void TrieTree::outputDOTfile()
 {
-    std::string outputString;
     std::ofstream outfile ("graph.gv");
-    outputString = this->outputDOTfileRecursive(root);
-    outfile << "graph TrieTreeGraph {\n" << outputString << "}"<<std::endl;
+    outfile << "graph TrieTreeGraph {\n";
+    this->outputDOTfile(root,&outfile);
+    outfile << "}"<<std::endl;
     outfile.close();
 }

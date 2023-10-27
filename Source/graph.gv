@@ -1,10 +1,10 @@
 graph TrieTreeGraph {
 ROOTNODE -- a
-ROOTNODE -- b
-ROOTNODE -- c
-ROOTNODE -- d
-ROOTNODE -- t
-a -- aa
+ROOTNODE [label=""]ROOTNODE -- b
+ROOTNODE [label=""]ROOTNODE -- c
+ROOTNODE [label=""]ROOTNODE -- d
+ROOTNODE [label=""]ROOTNODE -- t
+ROOTNODE [label=""]a -- aa
 a -- ab
 a -- ac
 b -- ba
@@ -18,4 +18,8 @@ test -- testw
 testw -- testwo
 testwo -- testwor
 testwor -- testword
+testword [style="filled,dashed"
+shape=box
+fontsize=20.0
+fillcolor=lightblue];
 }

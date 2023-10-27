@@ -26,7 +26,7 @@ class TrieTree{
         //void inorder(std::ostream& os, BSTNode* node);
         //void postorder(std::ostream& os, BSTNode* node);
         //void destroy(BSTNode* node);
-        std::string outputDOTfileRecursive(TrieNode* node);
+        std::string outputDOTfile(TrieNode* node,std::ofstream* outfile);
     public:
         TrieTree();
         ~TrieTree();

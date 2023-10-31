@@ -101,6 +101,7 @@ TrieTree::~TrieTree()
 {
 }
 
+// Modify/new: Insertion algorithm that walks backwords from the last inserted node to take advantage of alphabetical order?
 void TrieTree::insert(std::string nodeString, bool isEnglishWord)
 {
     if(nodeString.size() > 1){
@@ -118,6 +119,7 @@ bool TrieTree::search(std::string nodeString)
     return false;
 }
 
+// Modify: Take a node to start from and a depth to limit to
 void TrieTree::outputDOTfile()
 {
     std::ofstream outfile ("graph.gv");

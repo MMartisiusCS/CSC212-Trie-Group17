@@ -101,7 +101,7 @@ TrieNode* TrieTree::search(std::string nodeString)
 
 void TrieTree::outputDOTfile(std::string prefix,int depth)
 {
-    std::ofstream outfile ("graph_"+prefix+".cv");
+    std::ofstream outfile ("graphs/graph_"+prefix+".cv");
     outfile << "graph TrieTreeGraph {\n";
     if(prefix.size() == 0){
          outfile << "ROOTNODE_ [label=\"\"]\n";

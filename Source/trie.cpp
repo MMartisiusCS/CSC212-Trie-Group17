@@ -13,34 +13,18 @@ TrieNode::~TrieNode()
 {
 }
 
-bool TrieNode::stringMatch(std::string b)
-{
-    int length;
-    if (this->nodeString.size() >= b.size()){
-        length = this->nodeString.size();
-    } else {
-        length = b.size();
-    }
-    for (int i = 0; i < length;i++){
-        if(this->nodeString[i] != b[i]){
-            return false;
-        }
-    }
-    return true;
-}
-
 TrieNode *TrieTree::insertPrivate(TrieNode* node, std::string nodeString, bool isEnglishWord)
 {
     //If node == nodeString, return node
     //else, If node->branches contains substring of nodeString(0,node.nodeString.size()+1), call insert at that node, with nodeString and isEnglishWord
             //Else, make a new node in node-branches(nodeString(0,nodeString.size()+1),false), then call inser at that node with nodeString and isEnglishWord
-    if(node->stringMatch(nodeString)){
+    if(node->nodeString == nodeString){
         node->isEnglishWord = isEnglishWord;
         return node;
     } else {
         for(int i = 0; i < node->branches.size();i++){
             //If node->branches contains substring of nodeString(0,nodeString.size()+1), call insert at that node, with nodeString and isEnglishWord
-            if(node->branches[i]->stringMatch(nodeString.substr(0,node->nodeString.size()+1))){
+            if(node->branches[i]->nodeString == nodeString.substr(0,node->nodeString.size()+1)){
                 return insertPrivate(node->branches[i],nodeString,isEnglishWord);
             }
         }

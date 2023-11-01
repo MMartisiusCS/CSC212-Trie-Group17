@@ -14,7 +14,6 @@ class TrieNode{
     public:
         TrieNode(std::string nodeString, bool isEnglishWord);
         ~TrieNode();
-        bool stringMatch(std::string b);
 };
 
 class TrieTree{

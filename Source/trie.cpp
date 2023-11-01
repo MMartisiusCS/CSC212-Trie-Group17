@@ -31,63 +31,41 @@ bool TrieNode::stringMatch(std::string b)
 
 TrieNode *TrieTree::insertPrivate(TrieNode* node, std::string nodeString, bool isEnglishWord)
 {
-    //if node is nullptr, make node with nodeString, return new node
-    if(node == nullptr){
-        node = new TrieNode(nodeString,isEnglishWord);
+    //If node == nodeString, return node
+    //else, If node->branches contains substring of nodeString(0,node.nodeString.size()+1), call insert at that node, with nodeString and isEnglishWord
+            //Else, make a new node in node-branches(nodeString(0,nodeString.size()+1),false), then call inser at that node with nodeString and isEnglishWord
+    if(node->stringMatch(nodeString)){
+        node->isEnglishWord = isEnglishWord;
         return node;
-    }
-    // if node.size()+1 == nodeString.size, we are going to be inserting a new node
-    if (node->nodeString.size()+1 == nodeString.size()){
-        // We must check if nodeString exist as any of the branches
-        // If it does, we do not insert, and return the pointer that points to nodeString in the tree
-        for(int i = 0; i < node->branches.size();i++){
-            if(node->branches[i]->stringMatch(nodeString)){
-                return node->branches[i];
-            }
-        }
-        // If it does not, we must create it
-        node->branches.push_back(new TrieNode (nodeString,isEnglishWord));
-        return node->branches[node->branches.size()-1];
-    // if node.size()+1 != nodeString.size, we are going to be going deeper into the tree
     } else {
-        //We must check if the substring of length node.size()+1 of nodeString is found as a existing branch of node.
-        // If it does exist, we must follow that branch down
-        // If it does not, we must create the new branch and follow it.
-        int index = -1;
         for(int i = 0; i < node->branches.size();i++){
+            //If node->branches contains substring of nodeString(0,nodeString.size()+1), call insert at that node, with nodeString and isEnglishWord
             if(node->branches[i]->stringMatch(nodeString.substr(0,node->nodeString.size()+1))){
-                index = i;
-                break;
+                return insertPrivate(node->branches[i],nodeString,isEnglishWord);
             }
         }
-        if(index != -1){
-            return insertPrivate(node->branches[index],nodeString,isEnglishWord);
-        } else {
-            node->branches.push_back(new TrieNode (nodeString.substr(0,node->nodeString.size()+1),false));
-            return insertPrivate(node->branches[node->branches.size()-1],nodeString,isEnglishWord);
-        }
+        node->branches.push_back(new TrieNode(nodeString.substr(0,node->nodeString.size()+1),false));
+        return insertPrivate(node->branches.back(),nodeString,isEnglishWord);
     }
-    return nullptr;
 }
 
-std::string TrieTree::outputDOTfile(TrieNode *node,std::ofstream *outfile)
+std::string TrieTree::outputDOTfile(TrieNode *node,int depth,std::ofstream *outfile)
 {
     std::string outputString;
     //Add current node's branches to output
-    *outfile << outputString << "ROOTNODE_ [label=\"\"]";
     for (int i = 0; i < node->branches.size();i++){
         if (node->nodeString.length() == 0){
-            *outfile << "ROOTNODE" << " -- " << node->branches[i]->nodeString << "\n";
+            *outfile << "ROOTNODE_ -- " << node->branches[i]->nodeString << "_\n";
         } else {
-            *outfile << node->nodeString << " -- " << node->branches[i]->nodeString << "\n";
+            *outfile << node->nodeString << "_ -- " << node->branches[i]->nodeString << "_\n";
         }
         if(node->branches[i]->isEnglishWord){
-            *outfile << node->branches[i]->nodeString << " [style=\"filled,dashed\"\nshape=box\nfontsize=20.0\nfillcolor=lightblue];\n";
+            *outfile << node->branches[i]->nodeString << "_ [style=\"filled,dashed\"\nshape=box\nfontsize=20.0\nfillcolor=lightblue];\n";
         }
     }
     // call for each branch
     for (int i = 0; i < node->branches.size();i++){
-        *outfile << outputDOTfile(node->branches[i], outfile);
+        *outfile << outputDOTfile(node->branches[i], depth,outfile);
     }
     return outputString;
 }
@@ -103,6 +81,7 @@ TrieTree::~TrieTree()
 
 void TrieTree::insert(std::string nodeString, bool isEnglishWord)
 {
+    /*
     if(nodeString.size() > 1){
         for(int i = 1; i < nodeString.size();i++){
             std::string strToInsert = nodeString.substr (0,i);
@@ -110,19 +89,24 @@ void TrieTree::insert(std::string nodeString, bool isEnglishWord)
         }
     }
     insertPrivate(root,nodeString,isEnglishWord);
+    */
+    insertPrivate(root,nodeString,isEnglishWord);
     return;
 }
 
-bool TrieTree::search(std::string nodeString)
+TrieNode* TrieTree::search(std::string nodeString)
 {
-    return false;
+    return nullptr;
 }
 
-void TrieTree::outputDOTfile()
+void TrieTree::outputDOTfile(std::string prefix,int depth)
 {
-    std::ofstream outfile ("graph.gv");
+    std::ofstream outfile ("graph_"+prefix+".cv");
     outfile << "graph TrieTreeGraph {\n";
-    this->outputDOTfile(root,&outfile);
+    if(prefix.size() == 0){
+         outfile << "ROOTNODE_ [label=\"\"]\n";
+    }
+    this->outputDOTfile(search(prefix),depth,&outfile);
     outfile << "}"<<std::endl;
     outfile.close();
 }

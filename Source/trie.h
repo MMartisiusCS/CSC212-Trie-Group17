@@ -25,7 +25,8 @@ class TrieTree{
         //void inorder(std::ostream& os, BSTNode* node);
         //void postorder(std::ostream& os, BSTNode* node);
         //void destroy(BSTNode* node);
-        std::string outputDOTfile(TrieNode* node,int depth,std::ofstream* outfile);
+        TrieNode* search(std::string nodeString,TrieNode* node);
+        std::string outputDOTfile(TrieNode* node,int distance,std::ofstream* outfile);
     public:
         TrieTree();
         ~TrieTree();
@@ -36,5 +37,5 @@ class TrieTree{
         //void inorder(std::ostream& os);
         //void postorder(std::ostream& os);
         TrieNode* search(std::string nodeString);
-        void outputDOTfile(std::string prefix,int depth);
+        void outputDOTfile(std::string prefix,int distance);
 };

@@ -8,7 +8,6 @@ class TrieNode{
         bool isEnglishWord;
         std::vector<TrieNode*> branches;
         int repeats = 0;
-        //Remove: Remove height, not needed as height is just nodeString.size()
         int height = 0;
 
         friend class TrieTree;
@@ -27,7 +26,7 @@ class TrieTree{
         //void inorder(std::ostream& os, BSTNode* node);
         //void postorder(std::ostream& os, BSTNode* node);
         //void destroy(BSTNode* node);
-        std::string outputDOTfile(TrieNode* node,std::ofstream* outfile);
+        std::string outputDOTfile(TrieNode* node,int depth,std::ofstream* outfile);
     public:
         TrieTree();
         ~TrieTree();
@@ -37,6 +36,6 @@ class TrieTree{
         //void preorder(std::ostream& os);
         //void inorder(std::ostream& os);
         //void postorder(std::ostream& os);
-        bool search(std::string nodeString);
-        void outputDOTfile();
+        TrieNode* search(std::string nodeString);
+        void outputDOTfile(std::string prefix,int depth);
 };

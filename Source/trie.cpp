@@ -29,6 +29,7 @@ bool TrieNode::stringMatch(std::string b)
     return true;
 }
 
+// Modify: Create nodes along the way to nodeString instead of calling insert for every substring length
 TrieNode *TrieTree::insertPrivate(TrieNode* node, std::string nodeString, bool isEnglishWord)
 {
     //If node == nodeString, return node
@@ -60,7 +61,7 @@ std::string TrieTree::outputDOTfile(TrieNode *node,int depth,std::ofstream *outf
             *outfile << node->nodeString << "_ -- " << node->branches[i]->nodeString << "_\n";
         }
         if(node->branches[i]->isEnglishWord){
-            *outfile << node->branches[i]->nodeString << "_ [style=\"filled,dashed\"\nshape=box\nfontsize=20.0\nfillcolor=lightblue];\n";
+            *outfile << node->branches[i]->nodeString << " [style=\"filled,dashed\",shape=box,fontsize=20.0,fillcolor=lightblue];\n";
         }
     }
     // call for each branch
@@ -79,6 +80,8 @@ TrieTree::~TrieTree()
 {
 }
 
+// Modify/new: Insertion algorithm that walks backwords from the last inserted node to take advantage of alphabetical order?
+// Just call insertPrivate once, modify insetPrivate function
 void TrieTree::insert(std::string nodeString, bool isEnglishWord)
 {
     /*
@@ -99,7 +102,8 @@ TrieNode* TrieTree::search(std::string nodeString)
     return nullptr;
 }
 
-void TrieTree::outputDOTfile(std::string prefix,int depth)
+// Modify: Take a node to start from and a depth to limit to
+void TrieTree::outputDOTfile()
 {
     std::ofstream outfile ("graph_"+prefix+".cv");
     outfile << "graph TrieTreeGraph {\n";

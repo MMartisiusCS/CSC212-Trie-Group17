@@ -8,6 +8,7 @@ class TrieNode{
         bool isEnglishWord;
         std::vector<TrieNode*> branches;
         int repeats = 0;
+        //Remove: Remove height, not needed as height is just nodeString.size()
         int height = 0;
 
         friend class TrieTree;

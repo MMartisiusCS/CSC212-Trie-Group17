@@ -29,6 +29,7 @@ bool TrieNode::stringMatch(std::string b)
     return true;
 }
 
+// Modify: Create nodes along the way to nodeString instead of calling insert for every substring length
 TrieNode *TrieTree::insertPrivate(TrieNode* node, std::string nodeString, bool isEnglishWord)
 {
     //if node is nullptr, make node with nodeString, return new node
@@ -102,6 +103,7 @@ TrieTree::~TrieTree()
 }
 
 // Modify/new: Insertion algorithm that walks backwords from the last inserted node to take advantage of alphabetical order?
+// Just call insertPrivate once, modify insetPrivate function
 void TrieTree::insert(std::string nodeString, bool isEnglishWord)
 {
     if(nodeString.size() > 1){

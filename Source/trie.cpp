@@ -83,7 +83,7 @@ std::string TrieTree::outputDOTfile(TrieNode *node,std::ofstream *outfile)
             *outfile << node->nodeString << " -- " << node->branches[i]->nodeString << "\n";
         }
         if(node->branches[i]->isEnglishWord){
-            *outfile << node->branches[i]->nodeString << " [style=\"filled,dashed\"\nshape=box\nfontsize=20.0\nfillcolor=lightblue];\n";
+            *outfile << node->branches[i]->nodeString << " [style=\"filled,dashed\",shape=box,fontsize=20.0,fillcolor=lightblue];\n";
         }
     }
     // call for each branch

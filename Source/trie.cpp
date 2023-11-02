@@ -7,7 +7,6 @@ TrieNode::TrieNode(std::string nodeString, bool isEnglishWord){
     this->nodeString = nodeString;
     this->isEnglishWord = isEnglishWord;
     this->branches = {};
-    this->height = 0;
 }
 
 TrieNode::~TrieNode()
@@ -103,7 +102,7 @@ TrieNode* TrieTree::search(std::string nodeString)
 
 void TrieTree::outputDOTfile(std::string prefix,int distance)
 {
-    std::ofstream outfile ("graphs\\graph_"+ prefix + "_" + std::to_string(distance) + ".gv");
+    std::ofstream outfile ("graph_"+ prefix + "_" + std::to_string(distance) + ".gv");
     outfile << "graph TrieTreeGraph {\n";
     if(prefix.size() == 0){
          outfile << "ROOTNODE_ [label=\"\"]\n";

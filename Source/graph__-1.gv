@@ -1,0 +1,23 @@
+graph TrieTreeGraph {
+ROOTNODE_ [label=""]
+ROOTNODE_ -- a_
+ROOTNODE_ -- b_
+ROOTNODE_ -- c_
+ROOTNODE_ -- d_
+ROOTNODE_ -- t_
+a_ -- aa_
+a_ -- ab_
+a_ -- ac_
+b_ -- ba_
+d_ -- dd_
+dd_ -- ddd_
+ddd_ -- dddd_
+t_ -- te_
+te_ -- tes_
+tes_ -- test_
+test_ -- testw_
+testw_ -- testwo_
+testwo_ -- testwor_
+testwor_ -- testword_
+testword_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+}

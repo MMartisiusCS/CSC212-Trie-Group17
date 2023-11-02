@@ -14,5 +14,5 @@ int main(int argc, char*argv[]){
     tree.insert("ba",false);
     tree.insert("dddd",false);
     tree.insert("testword",true);
-    tree.outputDOTfile();
+    tree.outputDOTfile("",-1);
 }

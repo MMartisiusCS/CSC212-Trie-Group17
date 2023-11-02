@@ -79,15 +79,6 @@ TrieTree::~TrieTree()
 
 void TrieTree::insert(std::string nodeString, bool isEnglishWord)
 {
-    /*
-    if(nodeString.size() > 1){
-        for(int i = 1; i < nodeString.size();i++){
-            std::string strToInsert = nodeString.substr (0,i);
-            insertPrivate(root,strToInsert,false);
-        }
-    }
-    insertPrivate(root,nodeString,isEnglishWord);
-    */
     insertPrivate(root,nodeString,isEnglishWord);
     return;
 }

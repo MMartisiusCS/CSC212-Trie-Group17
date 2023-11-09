@@ -41,7 +41,7 @@ int main(int argc, char*argv[]){
         std::cout << std::endl;
 
         int depth = 0;
-        std::cout << "Enter a number 0-5: ";
+        std::cout << "Enter a number 0-6: ";
         std::cin >> input;
         std::cout << std::endl;
         switch(input) {

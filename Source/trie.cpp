@@ -121,11 +121,15 @@ void TrieTree::findWordOfLength(int length){
 std::string TrieTree::getStringNode(TrieNode* node) {
     return node->nodeString;
 }
+void TrieTree::findLargest(std::string node){
+    findLargestWord(node);
+}
+
 void TrieTree::findLargestWord(std::string nodeString){
     TrieNode* node = search(nodeString);
 
     if (node == nullptr) {
-        return "";
+        return;
     }
     while (!node->branches.empty()) {
         //Set largest branch to first
@@ -140,6 +144,5 @@ void TrieTree::findLargestWord(std::string nodeString){
         node = maxBranch;
     }
 
-    return node->nodeString;
+    std::cout << node->nodeString << std::endl;
 }
-

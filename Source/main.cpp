@@ -36,6 +36,8 @@ int main(int argc, char*argv[]){
     bool end = false;
     int input;
     while (end) {
+        std::string pre;
+        int depth;
         std::cout << "Enter a number 0-5: ";
         std::cin >> input;
         std::cout << std::endl;
@@ -49,7 +51,12 @@ int main(int argc, char*argv[]){
                 break;
 
             case 2:
-                tree->outputDOTfile("",-1);
+                std::cout << "Enter the prefix you would like to search for: ";
+                std::cin >> pre;
+                std::cout << "Enter the depth you would like to search (-1 to reach bottom of the tree): ";
+                std::cin >> depth;
+
+                tree->outputDOTfile(pre,depth);
                 break;
 
             case 3:

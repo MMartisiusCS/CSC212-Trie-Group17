@@ -22,7 +22,9 @@ void fileSetup(std::string fileName,TrieTree* tree) {
 int main(int argc, char*argv[]){
     
     TrieTree* tree = new TrieTree();
+    std::cout << "Compiling trie..." << std::endl;
     fileSetup("words_alpha.txt",tree);
+    std::cout << "Trie load complete!" << std::endl;
 
     //menu - insert, dotfile, search, all of words of length, find largest, auto complete
     std::cout << "Please insert the number that corresponds to the function you wish to invoke:" << std::endl;
@@ -46,10 +48,12 @@ int main(int argc, char*argv[]){
         std::cout << std::endl;
         switch(input) {
             case 0:
+            {
                 end = true;
                 break;
-            
+            }
             case 1: // insert
+            {
                 std::cout << "0 - Insert through command line" << std::endl;
                 std::cout << "1 - Insert using txt file" << std::endl;
                 std::cout << std::endl;
@@ -88,8 +92,9 @@ int main(int argc, char*argv[]){
                     std::cout << std::endl;
                 }
                 break;
-
+            }
             case 2:
+            {
                 std::cout << "Enter the prefix you would like to search for: ";
                 std::cin >> pre;
                 std::cout << "Enter the depth you would like to search (-1 to reach bottom of the tree): ";
@@ -97,28 +102,31 @@ int main(int argc, char*argv[]){
 
                 tree->outputDOTfile(pre,depth);
                 break;
-
+            }
             case 3: // search for word
-
+            {
                 break;
-
+            }
             case 4:
+            {
                 std::cout << "Enter the length of word you would like to search for: ";
                 std::cin >> depth;
                 tree->findWordOfLength(depth);
                 break;
-
+            }
             case 5: // largest word
-
+            {
                 break;
-            
+            }   
             case 6: // auto-complete
-
+            {
                 break;
-            
+            }
             default:
+            {
                 // change number depending on amount of menu options
                 std::cout << "Invalid input, Please enter a number 0-6" << std::endl;
+            }
 
         }
     }

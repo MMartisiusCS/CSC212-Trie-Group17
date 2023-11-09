@@ -1,0 +1,18 @@
+graph TrieTreeGraph {
+words_ [label=words]
+words_ -- wordsm_
+words_ -- wordsp_
+words_ -- wordst_
+words_ -- wordsw_
+wordsm_ [label=wordsm]
+wordsm_ -- wordsma_
+wordsm_ -- wordsme_
+wordsm_ -- wordsmi_
+wordsp_ [label=wordsp]
+wordsp_ -- wordspi_
+wordst_ [label=wordst]
+wordst_ -- wordsta_
+wordst_ -- wordste_
+wordsw_ [label=wordsw]
+wordsw_ -- wordswo_
+}

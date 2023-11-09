@@ -37,7 +37,7 @@ int main(int argc, char*argv[]){
 
     bool end = false;
     int input;
-    std::string input2;
+    std::string input2; // variable used in INSERT case - causes error when initialized in switch statement
     while (!end) {
         std::string pre = "";
         int depth = 0;
@@ -87,7 +87,6 @@ int main(int argc, char*argv[]){
                     fileSetup(input2, tree);
                     std::cout << std::endl;
                 }
-
                 break;
 
             case 2:

@@ -4,6 +4,9 @@
 .vscode/launch.json
 .vscode/extensions.json
 .vscode/*.code-snippets
+source/.vscode/settings.json
+source/.vscode/tasks.json
+source/.vscode/launch.json
 
 # Local History for Visual Studio Code
 .history/

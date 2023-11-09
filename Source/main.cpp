@@ -1,6 +1,8 @@
 #include "trie.h"
 #include <iostream>
-#include <fstream>  
+#include <fstream>
+#include <unistd.h>
+#include <stdlib.h>
 
 //Set up trie with txt file
 void fileSetup(std::string fileName,TrieTree* tree) {
@@ -29,7 +31,7 @@ int main(int argc, char*argv[]){
     bool end = false;
     int input;
     std::string input2; // variable used in INSERT case - causes error when initialized in switch statement
-    std::string pre = ""; // variable for taking prefix in case 2 for dot file
+    std::string pre = ""; // variable for taking prefix in case 2 for dot file and searching for word in case 3
     while (!end) {
         //menu - insert, dotfile, search, all of words of length, find largest, auto complete
         std::cout << "Please insert the number that corresponds to the function you wish to invoke:" << std::endl;
@@ -95,16 +97,25 @@ int main(int argc, char*argv[]){
             }
             case 2:
             {
-                std::cout << "Enter the prefix you would like to search for: ";
+                std::cout << "Enter the prefix you would like to search for (Enter 'ROOTNODE' to start from root): ";
                 std::cin >> pre;
                 std::cout << "Enter the depth you would like to search to(-1 to reach bottom of the tree): ";
                 std::cin >> depth;
 
-                tree->outputDOTfile(pre,depth);
+                if(pre == "ROOTNODE"){
+                    tree->outputDOTfile("",depth);
+                }
+                else{
+                    tree->outputDOTfile(pre,depth);
+                }
                 break;
             }
             case 3: // search for word
             {
+                std::cout << "Enter a word to search for: ";
+                std::cin >> pre;
+                tree->searchForWord(pre);
+                sleep(1);
                 break;
             }
             case 4: 

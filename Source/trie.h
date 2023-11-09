@@ -31,4 +31,5 @@ class TrieTree{
         TrieNode* search(std::string nodeString);
         void outputDOTfile(std::string prefix,int distance);
         std::string getStringNode(TrieNode* nodeString);
+        void searchForWord(std::string word);
 };

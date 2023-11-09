@@ -66,7 +66,7 @@ int main(int argc, char*argv[]){
 
             default:
                 // change number depending on amount of menu options
-                std::cout << "Please enter a number 0-5" << std::endl;
+                std::cout << "Invalid input, Please enter a number 0-5" << std::endl;
 
         }
     }

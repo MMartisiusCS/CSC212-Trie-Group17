@@ -145,7 +145,7 @@ void TrieTree::findLargestWord(std::string nodeString){
         //Set largest branch to first
         TrieNode* maxBranch = node->branches[0];
         //Iterates through each branch in the tree and compares each branch to the next
-        for (const TrieNode* branch : node->branches) {
+        for (TrieNode* branch : node->branches) {
             if(branch->nodeString.size() > maxBranch->nodeString.size()) {
                 maxBranch = branch;
             }

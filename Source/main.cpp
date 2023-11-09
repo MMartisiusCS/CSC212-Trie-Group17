@@ -20,10 +20,9 @@ void fileSetup(std::string fileName,TrieTree* tree) {
 }
 
 int main(int argc, char*argv[]){
-    //Add: Time measurment of time to create and load tree, and time to output DOT file?
     
 
     TrieTree* tree = new TrieTree();
     fileSetup("words_alpha.txt",tree);
-    tree->outputDOTfile("",-1);
+    tree->outputDOTfile("ar",4);
 }

@@ -28,4 +28,5 @@ class TrieTree{
         void insert(std::string nodeString, bool isEnglishWord);
         TrieNode* search(std::string nodeString);
         void outputDOTfile(std::string prefix,int distance);
+        TrieNode* getStringNode(TrieNode* nodeString);
 };

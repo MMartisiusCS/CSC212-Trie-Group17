@@ -48,17 +48,17 @@ TrieNode *TrieTree::search(std::string nodeString, TrieNode *node)
 std::string TrieTree::outputDOTfile(TrieNode *node, int distance, std::ofstream *outfile)
 {
     std::string outputString;
+    *outfile << node->nodeString << "_ [label=" << node->nodeString << "]\n";
+    if(node->isEnglishWord){
+                *outfile << node->nodeString << "_ [style=\"filled,dashed\",shape=box,fontsize=20.0,fillcolor=lightblue];\n";
+    }
     if(distance != 0){
         //Add current node's branches to output
-        *outfile << node->nodeString << "_ [label=" << node->nodeString << "]\n";
         for (int i = 0; i < node->branches.size();i++){
             if (node->nodeString.length() == 0){
                 *outfile << "ROOTNODE_ -- " << node->branches[i]->nodeString << "_\n";
             } else {
                 *outfile << node->nodeString << "_ -- " << node->branches[i]->nodeString << "_\n";
-            }
-            if(node->branches[i]->isEnglishWord){
-                *outfile << node->branches[i]->nodeString << "_ [style=\"filled,dashed\",shape=box,fontsize=20.0,fillcolor=lightblue];\n";
             }
         }
         // call for each branch

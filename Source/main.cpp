@@ -90,9 +90,9 @@ int main(int argc, char*argv[]){
                 break;
 
             case 2:
-                std::cout << "Enter the prefix you would like to search for: ";
+                std::cout << "Enter the prefix you would like to start from: ";
                 std::cin >> pre;
-                std::cout << "Enter the depth you would like to search (-1 to reach bottom of the tree): ";
+                std::cout << "Enter the depth you would like to search to(-1 to reach bottom of the tree): ";
                 std::cin >> depth;
 
                 tree->outputDOTfile(pre,depth);

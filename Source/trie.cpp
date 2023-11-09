@@ -103,3 +103,6 @@ void TrieTree::outputDOTfile(std::string prefix,int distance)
     outfile << "}"<<std::endl;
     outfile.close();
 }
+TrieNode* TrieTree::getStringNode(TrieNode* node) {
+    return node->nodeString;
+}

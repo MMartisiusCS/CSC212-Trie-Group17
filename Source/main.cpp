@@ -24,7 +24,7 @@ int main(int argc, char*argv[]){
     TrieTree* tree = new TrieTree();
     fileSetup("words_alpha.txt",tree);
 
-    //menu - insert, dotfile, search, all of words of length, find largest
+    //menu - insert, dotfile, search, all of words of length, find largest, auto complete
     std::cout << "Please insert the number that corresponds to the function you wish to invoke:" << std::endl;
     std::cout << "0 - Exit" << std::endl;
     std::cout << "1 - Insert" << std::endl;
@@ -32,10 +32,13 @@ int main(int argc, char*argv[]){
     std::cout << "3 - Search for a Word" << std::endl;
     std::cout << "4 - Find words of a specified length" << std::endl;
     std::cout << "5 - Find largest word" << std::endl;
-    
+    std::cout << "6 - Auto-complete word" << std::endl;
+    std::cout << std::endl;
+
     bool end = false;
     int input;
-    while (end) {
+    std::string input2;
+    while (!end) {
         std::string pre = "";
         int depth = 0;
         std::cout << "Enter a number 0-5: ";
@@ -46,7 +49,44 @@ int main(int argc, char*argv[]){
                 end = true;
                 break;
             
-            case 1:
+            case 1: // insert
+                std::cout << "0 - Insert through command line" << std::endl;
+                std::cout << "1 - Insert using txt file" << std::endl;
+                std::cout << std::endl;
+                
+                bool isValidInput = false;
+                int inputValue;
+
+                while (!isValidInput) {
+                    std::cout << "Enter 0 or 1: ";
+                    std::cin >> input2;
+                    std::cout << std::endl;
+
+                    try {
+                        inputValue = std::stoi(input2);
+
+                        if (inputValue == 0 || inputValue == 1) {
+                            isValidInput = true;
+                        } else {
+                            std::cout << "Invalid input. Please enter 0 or 1." << std::endl;
+                        }
+                    } catch (const std::invalid_argument& e) {
+                        std::cout << "Invalid input. Please enter a valid integer." << std::endl;
+                    }
+                }
+
+                if(inputValue == 0) {
+                    std::cout << "Please enter a word to be inserted: ";
+                    std::cin >> input2;
+                    // add expression to check for isEnglishWord
+                    tree->insert(input2, 0);
+                    std::cout << std::endl;
+                } else if (inputValue == 1) {
+                    std::cout << "Please enter the name of the file to be inserted: ";
+                    std::cin >> input2;
+                    fileSetup(input2, tree);
+                    std::cout << std::endl;
+                }
 
                 break;
 
@@ -59,7 +99,7 @@ int main(int argc, char*argv[]){
                 tree->outputDOTfile(pre,depth);
                 break;
 
-            case 3:
+            case 3: // search for word
 
                 break;
 
@@ -69,13 +109,17 @@ int main(int argc, char*argv[]){
                 tree->findWordOfLength(depth);
                 break;
 
-            case 5:
+            case 5: // largest word
 
                 break;
+            
+            case 6: // auto-complete
 
+                break;
+            
             default:
                 // change number depending on amount of menu options
-                std::cout << "Invalid input, Please enter a number 0-5" << std::endl;
+                std::cout << "Invalid input, Please enter a number 0-6" << std::endl;
 
         }
     }

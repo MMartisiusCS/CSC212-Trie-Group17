@@ -36,8 +36,8 @@ int main(int argc, char*argv[]){
     bool end = false;
     int input;
     while (end) {
-        std::string pre;
-        int depth;
+        std::string pre = "";
+        int depth = 0;
         std::cout << "Enter a number 0-5: ";
         std::cin >> input;
         std::cout << std::endl;
@@ -64,7 +64,9 @@ int main(int argc, char*argv[]){
                 break;
 
             case 4:
-
+                std::cout << "Enter the length of word you would like to search for: ";
+                std::cin >> depth;
+                tree->findWordOfLength(depth);
                 break;
 
             case 5:

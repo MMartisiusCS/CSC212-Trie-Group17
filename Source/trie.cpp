@@ -103,3 +103,17 @@ void TrieTree::outputDOTfile(std::string prefix,int distance)
     outfile << "}"<<std::endl;
     outfile.close();
 }
+
+void TrieTree::findWordOfLength(TrieNode* node, int length){
+    if (length!=0){
+        for(int i = 0; i < node->branches.size(); i++){
+            findWordOfLength(node->branches[i], length-1);
+        }
+    }
+
+    std::cout << node->nodeString;
+}
+
+void TrieTree::findWordOfLength(int length){
+    findWordOfLength(root, length);
+}

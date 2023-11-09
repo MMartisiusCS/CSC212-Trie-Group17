@@ -24,22 +24,22 @@ int main(int argc, char*argv[]){
     TrieTree* tree = new TrieTree();
     fileSetup("words_alpha.txt",tree);
 
-    //menu - insert, dotfile, search, all of words of length, find largest, auto complete
-    std::cout << "Please insert the number that corresponds to the function you wish to invoke:" << std::endl;
-    std::cout << "0 - Exit" << std::endl;
-    std::cout << "1 - Insert" << std::endl;
-    std::cout << "2 - Output to Dotfile" << std::endl;
-    std::cout << "3 - Search for a Word" << std::endl;
-    std::cout << "4 - Find words of a specified length" << std::endl;
-    std::cout << "5 - Find largest word" << std::endl;
-    std::cout << "6 - Auto-complete word" << std::endl;
-    std::cout << std::endl;
-
     bool end = false;
     int input;
     std::string input2; // variable used in INSERT case - causes error when initialized in switch statement
+    std::string pre = ""; // variable for taking prefix in case 2 for dot file
     while (!end) {
-        std::string pre = "";
+        //menu - insert, dotfile, search, all of words of length, find largest, auto complete
+        std::cout << "Please insert the number that corresponds to the function you wish to invoke:" << std::endl;
+        std::cout << "0 - Exit" << std::endl;
+        std::cout << "1 - Insert" << std::endl;
+        std::cout << "2 - Output to Dotfile" << std::endl;
+        std::cout << "3 - Search for a Word" << std::endl;
+        std::cout << "4 - Find words of a specified length" << std::endl;
+        std::cout << "5 - Find largest word" << std::endl;
+        std::cout << "6 - Auto-complete word" << std::endl;
+        std::cout << std::endl;
+
         int depth = 0;
         std::cout << "Enter a number 0-5: ";
         std::cin >> input;
@@ -89,7 +89,8 @@ int main(int argc, char*argv[]){
                 }
                 break;
 
-            case 2:
+            case 2: // dot file
+                // ADD EXCEPTION AND ERROR HANDLING
                 std::cout << "Enter the prefix you would like to search for: ";
                 std::cin >> pre;
                 std::cout << "Enter the depth you would like to search (-1 to reach bottom of the tree): ";
@@ -102,7 +103,8 @@ int main(int argc, char*argv[]){
 
                 break;
 
-            case 4:
+            case 4: // find words of specified length
+                // ADD EXCEPTION AND ERROR HANDLING
                 std::cout << "Enter the length of word you would like to search for: ";
                 std::cin >> depth;
                 tree->findWordOfLength(depth);
@@ -122,6 +124,4 @@ int main(int argc, char*argv[]){
 
         }
     }
-
-    tree->outputDOTfile("ar",4);
 }

@@ -121,7 +121,7 @@ void TrieTree::findWordOfLength(int length){
 std::string TrieTree::getStringNode(TrieNode* node) {
     return node->nodeString;
 }
-std::string TrieTree::findLargestWord(std::string nodeString){
+void TrieTree::findLargestWord(std::string nodeString){
     TrieNode* node = search(nodeString);
 
     if (node == nullptr) {

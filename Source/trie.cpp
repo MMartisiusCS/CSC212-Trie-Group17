@@ -50,6 +50,7 @@ std::string TrieTree::outputDOTfile(TrieNode *node, int distance, std::ofstream 
     std::string outputString;
     if(distance != 0){
         //Add current node's branches to output
+        *outfile << node->nodeString << "_ [label=" << node->nodeString << "]\n";
         for (int i = 0; i < node->branches.size();i++){
             if (node->nodeString.length() == 0){
                 *outfile << "ROOTNODE_ -- " << node->branches[i]->nodeString << "_\n";

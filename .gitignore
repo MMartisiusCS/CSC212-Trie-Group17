@@ -48,6 +48,8 @@ source/.vscode/launch.json
 *.app/
 
 source/main
+source/main.exe
+source/trie.exe
 
 # General
 main.dSYM/

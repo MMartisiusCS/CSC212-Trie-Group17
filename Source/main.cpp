@@ -118,6 +118,9 @@ int main(int argc, char*argv[]){
             }
             case 5: // largest word
             {
+                std::string largest_word;
+                std::cout << "Largest word: ";
+                tree->findLargestWord(largest_word);
                 break;
             }   
             case 6: // auto-complete

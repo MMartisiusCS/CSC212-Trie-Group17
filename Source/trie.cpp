@@ -48,17 +48,17 @@ TrieNode *TrieTree::search(std::string nodeString, TrieNode *node)
 std::string TrieTree::outputDOTfile(TrieNode *node, int distance, std::ofstream *outfile)
 {
     std::string outputString;
+    *outfile << node->nodeString << "_ [label=" << node->nodeString << "]\n";
+    if(node->isEnglishWord){
+                *outfile << node->nodeString << "_ [style=\"filled,dashed\",shape=box,fontsize=20.0,fillcolor=lightblue];\n";
+    }
     if(distance != 0){
         //Add current node's branches to output
-        *outfile << node->nodeString << "_ [label=" << node->nodeString << "]\n";
         for (int i = 0; i < node->branches.size();i++){
             if (node->nodeString.length() == 0){
                 *outfile << "ROOTNODE_ -- " << node->branches[i]->nodeString << "_\n";
             } else {
                 *outfile << node->nodeString << "_ -- " << node->branches[i]->nodeString << "_\n";
-            }
-            if(node->branches[i]->isEnglishWord){
-                *outfile << node->branches[i]->nodeString << "_ [style=\"filled,dashed\",shape=box,fontsize=20.0,fillcolor=lightblue];\n";
             }
         }
         // call for each branch
@@ -130,4 +130,29 @@ void TrieTree::searchForWord(std::string word){
     else{
         std::cout << "Word does exist!" << std::endl;
     }
+}
+void TrieTree::findLargest(std::string node){
+    findLargestWord(node);
+}
+
+void TrieTree::findLargestWord(std::string nodeString){
+    TrieNode* node = search(nodeString);
+
+    if (node == nullptr) {
+        return;
+    }
+    while (!node->branches.empty()) {
+        //Set largest branch to first
+        TrieNode* maxBranch = node->branches[0];
+        //Iterates through each branch in the tree and compares each branch to the next
+        for (const TrieNode* branch : node->branches) {
+            if(branch->nodeString.size() > maxBranch->nodeString.size()) {
+                maxBranch = branch;
+            }
+        }
+        //Set node to the largest branch
+        node = maxBranch;
+    }
+
+    std::cout << node->nodeString << std::endl;
 }

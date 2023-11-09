@@ -38,7 +38,7 @@ int main(int argc, char*argv[]){
         std::cout << "0 - Exit" << std::endl;
         std::cout << "1 - Insert" << std::endl;
         std::cout << "2 - Output to Dotfile" << std::endl;
-        std::cout << "3 - Search for a Word" << std::endl;
+        std::cout << "3 - Search for a Word in Trie" << std::endl;
         std::cout << "4 - Find words of a specified length" << std::endl;
         std::cout << "5 - Find largest word" << std::endl;
         std::cout << "6 - Auto-complete word" << std::endl;
@@ -129,6 +129,9 @@ int main(int argc, char*argv[]){
             }
             case 5: // largest word
             {
+                std::string largest_word;
+                std::cout << "Largest word: ";
+                tree->findLargestWord(largest_word);
                 break;
             }   
             case 6: // auto-complete
@@ -140,7 +143,6 @@ int main(int argc, char*argv[]){
                 // change number depending on amount of menu options
                 std::cout << "Invalid input, Please enter a number 0-6" << std::endl;
             }
-
         }
     }
 }

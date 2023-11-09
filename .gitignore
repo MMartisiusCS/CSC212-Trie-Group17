@@ -47,7 +47,10 @@ source/.vscode/launch.json
 *.out/
 *.app/
 
+source/main
+
 # General
+main.dSYM/
 .DS_Store/
 .AppleDouble/
 .LSOverride/

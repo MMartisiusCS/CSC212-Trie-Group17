@@ -20,11 +20,9 @@ void fileSetup(std::string fileName,TrieTree* tree) {
 }
 
 int main(int argc, char*argv[]){
-    //Add: Time measurment of time to create and load tree, and time to output DOT file?
     
     TrieTree* tree = new TrieTree();
     fileSetup("words_alpha.txt",tree);
-    tree->outputDOTfile("",-1);
 
     //menu - insert, dotfile, search, all of words of length, find largest
     std::cout << "Please insert the number that corresponds to the function you wish to invoke:" << std::endl;
@@ -51,7 +49,7 @@ int main(int argc, char*argv[]){
                 break;
 
             case 2:
-
+                tree->outputDOTfile("",-1);
                 break;
 
             case 3:
@@ -73,4 +71,5 @@ int main(int argc, char*argv[]){
         }
     }
 
+    tree->outputDOTfile("ar",4);
 }

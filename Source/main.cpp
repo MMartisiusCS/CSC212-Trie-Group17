@@ -35,7 +35,7 @@ int main(int argc, char*argv[]){
     
     bool end = false;
     int input;
-    while (end) {
+    while (!end) {
         std::string pre = "";
         int depth = 0;
         std::cout << "Enter a number 0-5: ";

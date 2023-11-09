@@ -110,8 +110,9 @@ void TrieTree::findWordOfLength(TrieNode* node, int length){
             findWordOfLength(node->branches[i], length-1);
         }
     }
-
-    std::cout << node->nodeString;
+    if (length == 0 && node->isEnglishWord){
+        std::cout << node->nodeString << std::endl;
+    }
 }
 
 void TrieTree::findWordOfLength(int length){

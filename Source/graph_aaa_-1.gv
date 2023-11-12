@@ -1,0 +1,4 @@
+graph TrieTreeGraph {
+aaa_ [label="aaa,0"]
+aaa_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+}

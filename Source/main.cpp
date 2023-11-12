@@ -3,10 +3,12 @@
 #include <fstream>
 #include <unistd.h>
 #include <stdlib.h>
+#include <chrono>
 
 //Set up trie with txt file
 void fileSetup(std::string fileName,TrieTree* tree) {
     //Create: Section that creates a file reader, reads each line from the file and loads it into the tree.
+    auto start = std::chrono::high_resolution_clock::now();
     std::ifstream infile;
     std::string line;
     infile.open(fileName);
@@ -19,6 +21,9 @@ void fileSetup(std::string fileName,TrieTree* tree) {
     while(std::getline(infile,line)) {
         tree->insert(line,true);
     }
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto duration = (std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count()/1000.0);
+    std::cout << "Time to load file into tree: " << duration << "s" << std::endl;
 }
 
 int main(int argc, char*argv[]){
@@ -29,7 +34,7 @@ int main(int argc, char*argv[]){
     std::cout << "Trie load complete!" << std::endl;
 
     bool end = false;
-    int input;
+    std::string inputText;
     std::string input2; // variable used in INSERT case - causes error when initialized in switch statement
     std::string pre = ""; // variable for taking prefix in case 2 for dot file and searching for word in case 3
     while (!end) {
@@ -46,8 +51,10 @@ int main(int argc, char*argv[]){
 
         int depth = 0;
         std::cout << "Enter a number 0-6: ";
-        std::cin >> input;
+        std::cin >> inputText;
         std::cout << std::endl;
+        try {
+            int input = stoi(inputText);
         switch(input) {
             case 0:
             {
@@ -143,6 +150,9 @@ int main(int argc, char*argv[]){
                 // change number depending on amount of menu options
                 std::cout << "Invalid input, Please enter a number 0-6" << std::endl;
             }
+        }
+        } catch (const std::invalid_argument& e) {
+            std::cout << "Invalid input. Please enter a valid integer." << std::endl;
         }
     }
 }

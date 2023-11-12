@@ -24,7 +24,11 @@ TrieNode *TrieTree::insertPrivate(TrieNode* node, std::string nodeString, bool i
     } else {
         for(int i = 0; i < node->branches.size();i++){
             //If node->branches contains substring of nodeString(0,nodeString.size()+1), call insert at that node, with nodeString and isEnglishWord
+            //If node we are going to is an english word, and we are inserting an english word, add one to repeats.
             if(node->branches[i]->nodeString == nodeString.substr(0,node->nodeString.size()+1)){
+                if(node->branches[i]->isEnglishWord && isEnglishWord){
+                    node->branches[i]->repeats++;
+                }
                 return insertPrivate(node->branches[i],nodeString,isEnglishWord);
             }
         }
@@ -48,7 +52,11 @@ TrieNode *TrieTree::search(std::string nodeString, TrieNode *node)
 std::string TrieTree::outputDOTfile(TrieNode *node, int distance, std::ofstream *outfile)
 {
     std::string outputString;
-    *outfile << node->nodeString << "_ [label=" << node->nodeString << "]\n";
+    if(node->nodeString.length() == 0){
+        *outfile << "ROOTNODE_ [label=\"" << node->nodeString << "," << node->repeats <<"\"]\n";
+    } else {
+        *outfile << node->nodeString << "_ [label=\"" << node->nodeString << "," << node->repeats <<"\"]\n";
+    }
     if(node->isEnglishWord){
                 *outfile << node->nodeString << "_ [style=\"filled,dashed\",shape=box,fontsize=20.0,fillcolor=lightblue];\n";
     }
@@ -96,9 +104,6 @@ void TrieTree::outputDOTfile(std::string prefix,int distance)
 {
     std::ofstream outfile ("graph_"+ prefix + "_" + std::to_string(distance) + ".gv");
     outfile << "graph TrieTreeGraph {\n";
-    if(prefix.size() == 0){
-         outfile << "ROOTNODE_ [label=\"\"]\n";
-    }
     this->outputDOTfile(search(prefix),distance,&outfile);
     outfile << "}"<<std::endl;
     outfile.close();

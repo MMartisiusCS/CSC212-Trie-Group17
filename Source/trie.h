@@ -4,14 +4,16 @@
 
 class TrieNode{
     private:
-        std::string nodeString;
+        char nodeChar;
         bool isEnglishWord;
-        std::vector<TrieNode*> branches;
+        TrieNode *branches [26] = {};
         int repeats = 0;
+        int depth;
 
         friend class TrieTree;
     public:
-        TrieNode(std::string nodeString, bool isEnglishWord);
+        TrieNode(char nodeChar, bool isEnglishWord, int depth);
+        TrieNode(bool isEnglishWord, int depth);
         ~TrieNode();
 };
 
@@ -20,7 +22,7 @@ class TrieTree{
         TrieNode* root;
         TrieNode* insertPrivate(TrieNode* node,std::string nodeString, bool isEnglishWord);
         TrieNode* search(std::string nodeString,TrieNode* node);
-        std::string outputDOTfile(TrieNode* node,int distance,std::ofstream* outfile);
+        std::string outputDOTfile(TrieNode* node,int distance,std::ofstream* outfile,std::string prefixFromLastNode);
         void findWordOfLength(TrieNode* node, int length);
         void findLargestWord(std::string nodeString);
     public:

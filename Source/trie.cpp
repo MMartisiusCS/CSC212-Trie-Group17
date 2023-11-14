@@ -18,13 +18,13 @@ TrieNode *TrieTree::insertPrivate(TrieNode* node, std::string nodeString, bool i
     //If nodeChar == nodeString[node->depth], return node
     //else, If node->branches contains substring of nodeString(0,node.nodeString.size()+1), call insert at that node, with nodeString and isEnglishWord
             //Else, make a new node in node-branches(nodeString(0,nodeString.size()+1),false), then call inser at that node with nodeString and isEnglishWord
-    if(node->nodeChar == nodeString[node->depth]){
+    if(node->depth == nodeString.size()){
         node->isEnglishWord = isEnglishWord;
         return node;
-    } else if(node->branches[nodeString[node->depth]-97]->nodeChar != '\0') {
-        //if(node->branches[i]->isEnglishWord && isEnglishWord){
-        //    node->branches[i]->repeats++;
-        //}
+    } else if(node->branches[nodeString[node->depth]-97] != nullptr) {
+        if(node->branches[nodeString[node->depth]-97]->isEnglishWord && isEnglishWord){
+            node->branches[nodeString[node->depth]-97]->repeats++;
+        }
         return insertPrivate(node->branches[nodeString[node->depth]-97],nodeString,isEnglishWord);
     } else {
         node->branches[nodeString[node->depth]-97] = new TrieNode(nodeString[node->depth],false,node->depth+1);
@@ -34,26 +34,16 @@ TrieNode *TrieTree::insertPrivate(TrieNode* node, std::string nodeString, bool i
 
 TrieNode *TrieTree::search(std::string nodeString, TrieNode* node)
 {
-    /*
-    if(node->branches[ nodeString[node->depth]-97 ]->nodeChar == nodeString[node->depth]){
-        std::cout << "Count found at node \"" << nodeString << "\" is " << node->branches[i]->repeats << std::endl;
-        return node->branches[i];
-    } else if(node->branches[i]->nodeString == nodeString.substr(0,node->nodeString.size()+1) ){
-        return search(nodeString,node->branches[i]);
-    }
-    std::cout << "String \"" << nodeString << "\" not found, no count to display" << std::endl;
-    return nullptr;
-    */
-   
    //if node branch array contains the current char
         //If node depth == nodeString.size, node is found and exists, return it and print count
         //else, search at the node for nodeString
-    if (node->branches[nodeString[node->depth]-97]->nodeChar == nodeString[node->depth]){
-        if(node->depth == nodeString.size()){
-            std::cout << "Count found at node \"" << nodeString << "\" is " << node->branches[nodeString[node->depth]-97]->repeats << std::endl;
-            return node->branches[nodeString[node->depth]-97];
-        }
+    if(node->depth == nodeString.size()){
+        //std::cout << "Count found at node \"" << nodeString << "\" is " << node->branches[nodeString[node->depth]-97]->repeats << std::endl;
+        return node;
+    } else if (node->branches[nodeString[node->depth]-97] != nullptr){
+        return search(nodeString,node->branches[nodeString[node->depth]-97]);
     }
+    return nullptr;
 }
 
 std::string TrieTree::outputDOTfile(TrieNode *node, int distance, std::ofstream *outfile, std::string prefixFromLastNode)
@@ -70,15 +60,23 @@ std::string TrieTree::outputDOTfile(TrieNode *node, int distance, std::ofstream 
     if(distance != 0){
         //Add current node's branches to output
         for (TrieNode *branchNode : node->branches) {
-            if (node->depth == 0){
-                *outfile << "ROOTNODE_ -- " << prefixFromLastNode + node->nodeChar + branchNode->nodeChar << "_\n";
-            } else {
-                *outfile << prefixFromLastNode + node->nodeChar << "_ -- " << prefixFromLastNode + node->nodeChar + branchNode->nodeChar << "_\n";
+            if(branchNode != nullptr){
+                if (node->depth == 0){
+                    *outfile << "ROOTNODE_ -- " << prefixFromLastNode + branchNode->nodeChar << "_\n";
+                } else {
+                    *outfile << prefixFromLastNode + node->nodeChar << "_ -- " << prefixFromLastNode + node->nodeChar + branchNode->nodeChar << "_\n";
+                }
             }
         }
         // call for each branch
         for (TrieNode *branchNode : node->branches) {
-            *outfile << outputDOTfile(branchNode, distance-1,outfile,prefixFromLastNode + node->nodeChar);
+            if(branchNode != nullptr){
+                if(node->depth == 0){
+                    *outfile << outputDOTfile(branchNode, distance-1,outfile,prefixFromLastNode);
+                } else {
+                    *outfile << outputDOTfile(branchNode, distance-1,outfile,prefixFromLastNode + node->nodeChar);
+                }
+            }
         }
     }
     return outputString;
@@ -111,7 +109,11 @@ void TrieTree::outputDOTfile(std::string prefix,int distance)
     std::ofstream outfile ("graph_"+ prefix + "_" + std::to_string(distance) + ".gv");
     outfile << "graph TrieTreeGraph {\n";
     TrieNode *searchResult = search(prefix);
-    this->outputDOTfile(searchResult,distance,&outfile,prefix);
+    std::string prefixFromLastNode = prefix; 
+    if(prefix.length() != 0){
+        prefixFromLastNode.pop_back();
+    }
+    this->outputDOTfile(searchResult,distance,&outfile,prefixFromLastNode);
     outfile << "}"<<std::endl;
     outfile.close();
 }

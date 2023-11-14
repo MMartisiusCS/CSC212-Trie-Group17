@@ -13,6 +13,7 @@ class TrieNode{
         friend class TrieTree;
     public:
         TrieNode(char nodeChar, bool isEnglishWord, int depth);
+        TrieNode(bool isEnglishWord, int depth);
         ~TrieNode();
 };
 

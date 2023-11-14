@@ -111,11 +111,12 @@ void TrieTree::outputDOTfile(std::string prefix,int distance)
     std::ofstream outfile ("graph_"+ prefix + "_" + std::to_string(distance) + ".gv");
     outfile << "graph TrieTreeGraph {\n";
     TrieNode *searchResult = search(prefix);
-    this->outputDOTfile(searchResult,distance,&outfile,searchResult->getNodeWord());
+    this->outputDOTfile(searchResult,distance,&outfile,prefix);
     outfile << "}"<<std::endl;
     outfile.close();
 }
 
+/*
 void TrieTree::findWordOfLength(TrieNode* node, int length){
     if (length!=0){
         for(int i = 0; i < node->branches.size(); i++){
@@ -168,3 +169,4 @@ void TrieTree::findLargestWord(std::string nodeString){
 
     std::cout << node->nodeString << std::endl;
 }
+*/

@@ -41,11 +41,13 @@ TrieNode *TrieTree::search(std::string nodeString, TrieNode *node)
 {
     for(int i = 0; i < node->branches.size(); i++){
         if(node->branches[i]->nodeString == nodeString){
+            std::cout << "Count found at node \"" << node->branches[i]->nodeString << "\" is " << node->branches[i]->repeats << std::endl;
             return node->branches[i];
         } else if(node->branches[i]->nodeString == nodeString.substr(0,node->nodeString.size()+1) ){
             return search(nodeString,node->branches[i]);
         }
     }
+    std::cout << "String \"" << nodeString << "\" not found, no count to display" << std::endl;
     return nullptr;
 }
 

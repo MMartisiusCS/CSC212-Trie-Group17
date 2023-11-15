@@ -97,7 +97,9 @@ TrieTree::~TrieTree()
 
 void TrieTree::insert(std::string nodeString, bool isEnglishWord)
 {
-    insertPrivate(root,nodeString,isEnglishWord);
+    if(!search(nodeString)){
+        insertPrivate(root,nodeString,isEnglishWord);
+    }
 }
 
 TrieNode* TrieTree::search(std::string nodeString)

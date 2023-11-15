@@ -20,6 +20,9 @@ TrieNode *TrieTree::insertPrivate(TrieNode* node, std::string nodeString, bool i
             //Else, make a new node in node-branches(nodeString(0,nodeString.size()+1),false), then call inser at that node with nodeString and isEnglishWord
     if(node->depth == nodeString.size()){
         node->isEnglishWord = isEnglishWord;
+        if(isEnglishWord){
+            this->words++;
+        }
         return node;
     } else if(node->branches[nodeString[node->depth]-97] != nullptr) {
         if(node->branches[nodeString[node->depth]-97]->isEnglishWord && isEnglishWord){
@@ -28,6 +31,7 @@ TrieNode *TrieTree::insertPrivate(TrieNode* node, std::string nodeString, bool i
         return insertPrivate(node->branches[nodeString[node->depth]-97],nodeString,isEnglishWord);
     } else {
         node->branches[nodeString[node->depth]-97] = new TrieNode(nodeString[node->depth],false,node->depth+1);
+        this->nodes++;
         return insertPrivate(node->branches[nodeString[node->depth]-97],nodeString,isEnglishWord);
     }
 }

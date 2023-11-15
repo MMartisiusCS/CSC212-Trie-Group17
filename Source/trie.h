@@ -19,6 +19,8 @@ class TrieNode{
 
 class TrieTree{
     private:
+        int nodes;
+        int words;
         TrieNode* root;
         TrieNode* insertPrivate(TrieNode* node,std::string nodeString, bool isEnglishWord);
         TrieNode* search(std::string nodeString,TrieNode* node);

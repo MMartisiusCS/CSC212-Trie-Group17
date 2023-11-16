@@ -125,6 +125,12 @@ void TrieTree::outputDOTfile(std::string prefix,int distance)
 }
 
 
+
+
+
+
+
+
 void TrieTree::findWordOfLength(TrieNode* node, int length){
     if (length!=0){
         for(int i = 0; i < node->branches.size(); i++){

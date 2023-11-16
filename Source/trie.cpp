@@ -124,7 +124,7 @@ void TrieTree::outputDOTfile(std::string prefix,int distance)
     outfile.close();
 }
 
-/*
+
 void TrieTree::findWordOfLength(TrieNode* node, int length){
     if (length!=0){
         for(int i = 0; i < node->branches.size(); i++){
@@ -177,4 +177,3 @@ void TrieTree::findLargestWord(std::string nodeString){
 
     std::cout << node->nodeString << std::endl;
 }
-*/

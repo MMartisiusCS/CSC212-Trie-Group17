@@ -37,7 +37,7 @@ int main(int argc, char*argv[]){
     std::string inputText;
     std::string input2; // variable used in INSERT case - causes error when initialized in switch statement
     std::string pre = ""; // variable for taking prefix in case 2 for dot file and searching for word in case 3
-    /*
+    
     while (!end) {
         //menu - insert, dotfile, search, all of words of length, find largest, auto complete
         std::cout << "Please insert the number that corresponds to the function you wish to invoke:" << std::endl;
@@ -156,5 +156,4 @@ int main(int argc, char*argv[]){
             std::cout << "Invalid input. Please enter a valid integer." << std::endl;
         }
     }
-    */
 }

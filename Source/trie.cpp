@@ -164,28 +164,56 @@ void TrieTree::searchForWord(std::string word){
         std::cout << "Word does exist!" << std::endl;
     }
 }
-void TrieTree::findLargest(std::string node){
-    findLargestWord(node);
+void TrieTree::findLargest(std::string string){
+    findLargestWord(string, root);
 }
 
-void TrieTree::findLargestWord(std::string nodeString){
-    TrieNode* node = search(nodeString);
+//  Start with blank string
+// Find next branch from node that has the largest depth
+// Go To that node with findLargestWord
+TrieNode* TrieTree::findLargestWord(std::string nodeString, TrieNode* node){
+    //TrieNode* node = search(nodeString);
 
     if (node == nullptr) {
-        return;
+        return nullptr;
     }
-    while (!node->branches.empty()) {
-        //Set largest branch to first
-        TrieNode* maxBranch = node->branches[0];
-        //Iterates through each branch in the tree and compares each branch to the next
-        for (TrieNode* branch : node->branches) {
-            if(branch->nodeString.size() > maxBranch->nodeString.size()) {
-                maxBranch = branch;
+    
+    int numBranches = 0;
+    for (int i = 0; i < 26; ++i) {
+        if (node->branches[i] != nullptr) {
+            numBranches++;
+        }
+    }
+    if(numBranches == 0){
+        //std::cout << nodeString + node->nodeChar << std::endl;
+        return node;
+    } else {
+        TrieNode* maxBranch = nullptr;
+        for(TrieNode* branchNode : node->branches){
+            if(branchNode){
+                if(node->depth != 0){
+                    if (findLargestWord(nodeString + node->nodeChar,branchNode)->depth > maxBranch->depth){
+                        maxBranch = branchNode;
+                    }
+                } else {
+                    if (findLargestWord(nodeString,branchNode)->depth > maxBranch->depth){
+                        maxBranch = branchNode;
+                    }
+                }
             }
         }
-        //Set node to the largest branch
-        node = maxBranch;
-    }
-
-    std::cout << node->nodeString << std::endl;
+        if (!maxBranch){
+            std::cout << nodeString + node->nodeChar << std::endl;
+            return node;
+        } else {
+            if(node->depth == 0){
+                findLargestWord(nodeString, maxBranch);
+            } else {
+                findLargestWord(nodeString + node->nodeChar, maxBranch);
+            }
+            return nullptr;
+        }
+    }   
+   
+    
 }

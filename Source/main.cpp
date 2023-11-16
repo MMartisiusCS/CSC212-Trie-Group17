@@ -142,12 +142,24 @@ int main(int argc, char*argv[]){
                 sleep(1);
                 break;
             }
-            case 4: 
+            case 4: // find words of specified length 
             {
-            // find words of specified length
-                // ADD EXCEPTION AND ERROR HANDLING
-                std::cout << "Enter the length of word you would like to search for: ";
-                std::cin >> depth;
+                isValidInput = false;
+
+                while (!isValidInput) {
+                    std::cout << "Enter the length of word you would like to search for: ";
+                    std::cin >> depth;
+                    std::cout << std::endl;
+
+                    try {
+                        depth = std::stoi(input2);
+                        isValidInput = true;
+
+                    } catch (const std::invalid_argument& e) {
+                        std::cout << "Invalid input. Please enter a valid integer." << std::endl;
+                    }
+                }
+            
                 tree->findWordOfLength(depth);
                 break;
             }

@@ -34,6 +34,7 @@ int main(int argc, char*argv[]){
     std::cout << "Trie load complete!" << std::endl;
 
     bool end = false;
+    bool isValidInput; // ERROR/EXCEPTION CHECKING BOOL
     std::string inputText;
     std::string input2; // variable used in INSERT case - causes error when initialized in switch statement
     std::string pre = ""; // variable for taking prefix in case 2 for dot file and searching for word in case 3
@@ -68,7 +69,7 @@ int main(int argc, char*argv[]){
                 std::cout << "1 - Insert using txt file" << std::endl;
                 std::cout << std::endl;
                 
-                bool isValidInput = false;
+                isValidInput = false;
                 int inputValue;
 
                 while (!isValidInput) {
@@ -103,12 +104,27 @@ int main(int argc, char*argv[]){
                 }
                 break;
             }
-            case 2:
+            case 2: // output to dot-file
             {
                 std::cout << "Enter the prefix you would like to search for (Enter 'ROOTNODE' to start from root): ";
                 std::cin >> pre;
-                std::cout << "Enter the depth you would like to search to(-1 to reach bottom of the tree): ";
-                std::cin >> depth;
+                std::cout << std::endl;
+
+                isValidInput = false;
+
+                while (!isValidInput) {
+                    std::cout << "Enter the depth you would like to search to(-1 to reach bottom of the tree): ";
+                    std::cin >> depth;
+                    std::cout << std::endl;
+
+                    try {
+                        depth = std::stoi(input2);
+                        isValidInput = true;
+
+                    } catch (const std::invalid_argument& e) {
+                        std::cout << "Invalid input. Please enter a valid integer." << std::endl;
+                    }
+                }
 
                 if(pre == "ROOTNODE"){
                     tree->outputDOTfile("",depth);

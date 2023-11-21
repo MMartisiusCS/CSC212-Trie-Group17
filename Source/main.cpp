@@ -192,7 +192,7 @@ int main(int argc, char*argv[]){
                         }
                     }
                     
-                    autocomplete(suffix, depth);
+                tree->autocomplete(inputText, depth);
                 break;
             }
             default:

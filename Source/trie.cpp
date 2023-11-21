@@ -129,7 +129,35 @@ void TrieTree::outputDOTfile(std::string prefix,int distance)
 
 
 
+void TrieTree::autocompleteHelper(TrieNode* node, int length, std::string currentWord) {
+    // If the length of word has been reached, print the current word
+    if (length == 0) {
+        std::cout << currentWord << std::endl;
+        return;
+    }
 
+    // Traverse all branches of the current node
+    for (int i = 0; i < 26; ++i) {
+        if (node->branches[i] != nullptr) {
+            char nextChar = 'a' + i;
+            autocompleteHelper(node->branches[i], length - 1, currentWord + nextChar);
+        }
+    }
+}
+
+void TrieTree::autocomplete(std::string suffix, int length) {
+    // Search for suffix in the tree, starting at the end node of the suffix path
+    TrieNode* startNode = search(suffix, root);
+
+    // If the suffix is not found, or the length is invalid, return
+    if (startNode == nullptr || length < suffix.length()) {
+        std::cout << "No words found." << std::endl;
+        return;
+    }
+
+    // Call the recursive helper function to find words of the specified length
+    autocompleteHelper(startNode, length - suffix.length(), suffix);
+}
 
 void TrieTree::findWordOfLength(TrieNode* node, int length, std::string str){
     if(node->nodeChar != '\0'){

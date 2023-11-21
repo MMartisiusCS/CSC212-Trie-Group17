@@ -114,7 +114,7 @@ int main(int argc, char*argv[]){
 
                 while (!isValidInput) {
                     std::cout << "Enter the depth you would like to search to(-1 to reach bottom of the tree): ";
-                    std::cin >> depth;
+                    std::cin >> input2;
                     std::cout << std::endl;
 
                     try {
@@ -148,7 +148,7 @@ int main(int argc, char*argv[]){
 
                 while (!isValidInput) {
                     std::cout << "Enter the length of word you would like to search for: ";
-                    std::cin >> depth;
+                    std::cin >> input2;
                     std::cout << std::endl;
 
                     try {
@@ -172,6 +172,27 @@ int main(int argc, char*argv[]){
             }   
             case 6: // auto-complete
             {
+                std::cout << "Please Enter a suffix to complete: ";
+                    std::cin >> inputText;
+                    std::cout << std::endl;
+
+                    isValidInput = false;
+
+                    while (!isValidInput) {
+                        std::cout << "Enter the length of word to complete the suffix too: ";
+                        std::cin >> input2;
+                        std::cout << std::endl;
+
+                        try {
+                            depth = std::stoi(input2);
+                            isValidInput = true;
+
+                        } catch (const std::invalid_argument& e) {
+                            std::cout << "Invalid input. Please enter a valid integer." << std::endl;
+                        }
+                    }
+                    
+                    autocomplete(suffix, depth);
                 break;
             }
             default:

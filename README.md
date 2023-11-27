@@ -11,6 +11,9 @@ Generating image file from .gv: To process the .gv file into an image file, run 
 To compile, simply run "g++ -g -std=c++11 main.cpp trie.cpp -o prog && ./prog" in the source folder. Make sure that words_alpha.txt is included, as well as any text files you would like to load into the tree after words_alpha is loaded.
 
 VoxedVEVO: Michael M
+
 nroy0703: Nathan R
+
 nlichtenfels: Nathan L
+
 mayjg26: Joesph M

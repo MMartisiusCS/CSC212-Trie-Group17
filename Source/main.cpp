@@ -7,7 +7,8 @@
 
 //Set up trie with txt file
 void fileSetup(std::string fileName,TrieTree* tree) {
-    //Create: Section that creates a file reader, reads each line from the file and loads it into the tree.
+    // Nathan L
+    // Trie setup with file loading
     auto start = std::chrono::high_resolution_clock::now();
     std::ifstream infile;
     std::string line;
@@ -45,6 +46,8 @@ int main(int argc, char*argv[]){
     std::string input2; // variable used in INSERT case - causes error when initialized in switch statement
     std::string pre = ""; // variable for taking prefix in case 2 for dot file and searching for word in case 3
     
+    // Nathan L
+    // Established menu setup, error/exception checking, switch statement
     while (!end) {
         //menu - insert, dotfile, search, all of words of length, find largest, auto complete
         std::cout << "Please insert the number that corresponds to the function you wish to invoke:" << std::endl;

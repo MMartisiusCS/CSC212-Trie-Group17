@@ -11,6 +11,7 @@ TrieNode::TrieNode(char nodeChar, bool isEnglishWord, int depth){
     this->depth = depth;
 }
 
+
 TrieNode::~TrieNode()
 {
     for(TrieNode* branchNode : this->branches){
@@ -245,7 +246,9 @@ void TrieTree::searchForWord(std::string word){
 std::string TrieTree::findLargest(){
     return findLargestWord(root);
 }
-
+//Nathan R
+//private method to check every branch in the trie to find the largest formed word
+//in each branch and then compare it to every other branch to find the biggest one
 std::string TrieTree::findLargestWord(TrieNode* node){
     if (node == nullptr) {
         return "";

@@ -182,6 +182,14 @@ void TrieTree::outputDOTfile(std::string prefix,int distance)
     outfile.close();
 }
 
+// Nathan L
+// recursive helper function that traverses all paths in the tree 
+// starting from the node of the last letter in the given suffix. 
+// Traverses a path, decrementing length every recursive call (every time it 
+// moves to a new node), adding each letter to the output string, until it 
+// reaches the length of the word specified, then printing the completed word 
+// The function then traverses the next path, repeats the same steps until
+// no more paths remain from the start node
 void TrieTree::autocompleteHelper(TrieNode* node, int length, std::string currentWord) {
     // If the length of word has been reached, print the current word
     if (length == 0) {
@@ -198,6 +206,12 @@ void TrieTree::autocompleteHelper(TrieNode* node, int length, std::string curren
     }
 }
 
+// Nathan L
+// autocomplete driver function, finds suffix in tree if it exists.
+// returns No words found if suffix does not exist, calls recursive
+// helper if suffix is found and passes the node at the end of suffix 
+// as the start node. Also passes length of word to complete too and
+// the suffix as a string for outputting purposes
 void TrieTree::autocomplete(std::string suffix, int length) {
     // Search for suffix in the tree, starting at the end node of the suffix path
     TrieNode* startNode = search(suffix, root);

@@ -38,6 +38,6 @@ class TrieTree{
         void outputDOTfile(std::string prefix,int distance);
         std::string getStringNode(TrieNode* nodeString);
         void searchForWord(std::string word);
-        void findLargest(std::string node);
+        std::string findLargest();
         void autocomplete(std::string suffix, int length);
 };

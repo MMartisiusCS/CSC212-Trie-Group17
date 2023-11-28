@@ -26,7 +26,7 @@ class TrieTree{
         TrieNode* search(std::string nodeString,TrieNode* node);
         std::string outputDOTfile(TrieNode* node,int distance,std::ofstream* outfile,std::string prefixFromLastNode);
         void findWordOfLength(TrieNode* node, int length, std::string str);
-        void findLargestWord(std::string nodeString);
+        std::string findLargestWord(TrieNode* node);
         void autocompleteHelper(TrieNode* node, int length, std::string currentWord);
     public:
         TrieTree();

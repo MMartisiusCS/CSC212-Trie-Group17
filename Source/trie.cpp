@@ -219,12 +219,12 @@ void TrieTree::autocompleteHelper(TrieNode* node, int length, std::string curren
 void TrieTree::autocomplete(std::string suffix, int length) {
     // Search for suffix in the tree, starting at the end node of the suffix path
     TrieNode* startNode = search(suffix, root);
-    /*
+    
     // If the suffix is not found, or the length is invalid, return
-    if (startNode == nullptr || length < suffix.length()) {
+    if (startNode == nullptr) {
         std::cout << "No words found." << std::endl;
         return;
-    } */
+    } 
 
     // Call the recursive helper function to find words of the specified length
     autocompleteHelper(startNode, length, suffix);

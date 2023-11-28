@@ -80,6 +80,8 @@ Icon/
 Network Trash Folder/
 Temporary Items/
 .apdisk/
+Source/trie
+Source/trie.dSYM/Contents/Resources/DWARF/trie
 Source/.idea/modules.xml
 Source/.idea/Source.iml
 Source/.idea/vcs.xml

@@ -13,6 +13,12 @@ TrieNode::TrieNode(char nodeChar, bool isEnglishWord, int depth){
 
 TrieNode::~TrieNode()
 {
+    for(TrieNode* branchNode : this->branches){
+        if(branchNode){
+            branchNode->~TrieNode();
+        }
+    }
+    delete this;
 }
 
 // Michael M

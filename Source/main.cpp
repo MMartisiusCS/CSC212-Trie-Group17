@@ -165,11 +165,12 @@ int main(int argc, char*argv[]){
             }
             case 5: // largest word
             {
-                std::string largest_word;
-                std::cout << "Largest word: ";
-                tree->findLargest(largest_word);
+                std::string longestWord = tree->findLargest();
+                std::cout << "Largest word: " << longestWord << "\n";
+                std::cout << "Length: " << longestWord.size() << "\n";
+                sleep(1);
                 break;
-            }   
+            }
             case 6: // auto-complete
             {
                 std::cout << "Please Enter a suffix to complete: ";

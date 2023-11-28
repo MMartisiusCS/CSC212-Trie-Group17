@@ -50,6 +50,8 @@ source/.vscode/launch.json
 source/main
 source/main.exe
 source/trie.exe
+source/.icon
+
 
 # General
 main.dSYM/
@@ -80,3 +82,6 @@ Temporary Items/
 .apdisk/
 Source/trie
 Source/trie.dSYM/Contents/Resources/DWARF/trie
+Source/.idea/modules.xml
+Source/.idea/Source.iml
+Source/.idea/vcs.xml

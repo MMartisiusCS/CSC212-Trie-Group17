@@ -91,7 +91,7 @@ int main(int argc, char*argv[]){
                 }
 
                 if(inputValue == 0) {
-                    std::cout << "Please enter a word to be inserted: ";
+                    std::cout << "Please enter a word to be inserted (Valid chars are a-z ONLY): ";
                     std::cin >> input2;
                     // add expression to check for isEnglishWord
                     tree->insert(input2, 0);

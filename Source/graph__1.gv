@@ -1,0 +1,81 @@
+graph TrieTreeGraph {
+ROOTNODE_ [label=",0"]
+ROOTNODE_ -- a_
+ROOTNODE_ -- b_
+ROOTNODE_ -- c_
+ROOTNODE_ -- d_
+ROOTNODE_ -- e_
+ROOTNODE_ -- f_
+ROOTNODE_ -- g_
+ROOTNODE_ -- h_
+ROOTNODE_ -- i_
+ROOTNODE_ -- j_
+ROOTNODE_ -- k_
+ROOTNODE_ -- l_
+ROOTNODE_ -- m_
+ROOTNODE_ -- n_
+ROOTNODE_ -- o_
+ROOTNODE_ -- p_
+ROOTNODE_ -- q_
+ROOTNODE_ -- r_
+ROOTNODE_ -- s_
+ROOTNODE_ -- t_
+ROOTNODE_ -- u_
+ROOTNODE_ -- v_
+ROOTNODE_ -- w_
+ROOTNODE_ -- x_
+ROOTNODE_ -- y_
+ROOTNODE_ -- z_
+a_ [label="a,25416"]
+a_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+b_ [label="b,18412"]
+b_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+c_ [label="c,32106"]
+c_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+d_ [label="d,18731"]
+d_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+e_ [label="e,14196"]
+e_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+f_ [label="f,11892"]
+f_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+g_ [label="g,10952"]
+g_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+h_ [label="h,13742"]
+h_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+i_ [label="i,13198"]
+i_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+j_ [label="j,2839"]
+j_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+k_ [label="k,3951"]
+k_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+l_ [label="l,10001"]
+l_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+m_ [label="m,19804"]
+m_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+n_ [label="n,13458"]
+n_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+o_ [label="o,12680"]
+o_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+p_ [label="p,34859"]
+p_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+q_ [label="q,1792"]
+q_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+r_ [label="r,16782"]
+r_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+s_ [label="s,38763"]
+s_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+t_ [label="t,18818"]
+t_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+u_ [label="u,22766"]
+u_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+v_ [label="v,5328"]
+v_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+w_ [label="w,6558"]
+w_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+x_ [label="x,506"]
+x_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+y_ [label="y,1142"]
+y_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+z_ [label="z,1386"]
+z_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+}

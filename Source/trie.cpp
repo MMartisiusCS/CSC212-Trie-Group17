@@ -182,7 +182,6 @@ void TrieTree::findWordOfLength(int length){
 std::string TrieTree::getStringNode(TrieNode* node) {
     return node->nodeString;
 }
-
 void TrieTree::searchForWord(std::string word){
     TrieNode* node = search(word, root);
     if(node == nullptr){

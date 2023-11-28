@@ -1,0 +1,30 @@
+graph TrieTreeGraph {
+word_ [label="word,58"]
+word_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+word_ -- worda_
+word_ -- wordb_
+word_ -- wordc_
+word_ -- worde_
+word_ -- wordh_
+word_ -- wordi_
+word_ -- wordl_
+word_ -- wordm_
+word_ -- wordn_
+word_ -- wordp_
+word_ -- words_
+word_ -- wordy_
+worda_ [label="worda,0"]
+wordb_ [label="wordb,0"]
+wordc_ [label="wordc,0"]
+worde_ [label="worde,0"]
+wordh_ [label="wordh,0"]
+wordi_ [label="wordi,0"]
+wordl_ [label="wordl,0"]
+wordm_ [label="wordm,0"]
+wordn_ [label="wordn,0"]
+wordp_ [label="wordp,0"]
+words_ [label="words,10"]
+words_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+wordy_ [label="wordy,0"]
+wordy_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+}

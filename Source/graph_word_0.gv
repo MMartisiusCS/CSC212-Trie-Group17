@@ -1,0 +1,4 @@
+graph TrieTreeGraph {
+word_ [label="word,58"]
+word_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+}

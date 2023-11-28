@@ -26,6 +26,8 @@ void fileSetup(std::string fileName,TrieTree* tree) {
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = (std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count()/1000.0);
     std::cout << "Time to load file into tree: " << duration << "s" << std::endl;
+    std::cout << "Total nodes in tree: " << tree->getNodes() << std::endl;
+    std::cout << "Total words in tree: " << tree->getWords() << std::endl;
 }
 
 int main(int argc, char*argv[]){

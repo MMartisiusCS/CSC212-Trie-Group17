@@ -35,6 +35,7 @@ TrieNode *TrieTree::insertPrivate(TrieNode* node, std::string nodeString, bool i
     if(node->depth == nodeString.size()){
         node->isEnglishWord = isEnglishWord;
         if(isEnglishWord){
+            // Add to count of words in tree
             this->words++;
         }
         return node;
@@ -45,6 +46,7 @@ TrieNode *TrieTree::insertPrivate(TrieNode* node, std::string nodeString, bool i
         return insertPrivate(node->branches[nodeString[node->depth]-97],nodeString,isEnglishWord);
     } else {
         node->branches[nodeString[node->depth]-97] = new TrieNode(nodeString[node->depth],false,node->depth+1);
+        // Add to count of nodes in tree
         this->nodes++;
         return insertPrivate(node->branches[nodeString[node->depth]-97],nodeString,isEnglishWord);
     }
@@ -210,6 +212,16 @@ void TrieTree::autocomplete(std::string suffix, int length) {
     autocompleteHelper(startNode, length - suffix.length(), suffix);
 }
 
+int TrieTree::getWords()
+{
+    return this->words;
+}
+
+int TrieTree::getNodes()
+{
+    return this->nodes;
+}
+
 void TrieTree::findWordOfLength(TrieNode* node, int length, std::string str){
     if(node->nodeChar != '\0'){
         str += node->nodeChar;
@@ -231,9 +243,6 @@ void TrieTree::findWordOfLength(int length){
     findWordOfLength(root, length, str);
 }
 
-std::string TrieTree::getStringNode(TrieNode* node) {
-    //return node->nodeString;
-}
 void TrieTree::searchForWord(std::string word){
     TrieNode* node = search(word, root);
     if(node == nullptr){

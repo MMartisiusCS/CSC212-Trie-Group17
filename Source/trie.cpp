@@ -119,6 +119,8 @@ TrieTree::TrieTree()
 
 TrieTree::~TrieTree()
 {
+    root->~TrieNode();
+    delete this;
 }
 
 // Michael M

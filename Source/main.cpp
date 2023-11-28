@@ -21,6 +21,8 @@ void fileSetup(std::string fileName,TrieTree* tree) {
     while(std::getline(infile,line)) {
         tree->insert(line,true);
     }
+    // Michael M
+    // Added some simple timing information
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = (std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count()/1000.0);
     std::cout << "Time to load file into tree: " << duration << "s" << std::endl;
@@ -28,6 +30,8 @@ void fileSetup(std::string fileName,TrieTree* tree) {
 
 int main(int argc, char*argv[]){
     
+    // Michael M
+    // Starting code for tree initialization
     TrieTree* tree = new TrieTree();
     std::cout << "Compiling trie..." << std::endl;
     fileSetup("words_alpha.txt",tree);

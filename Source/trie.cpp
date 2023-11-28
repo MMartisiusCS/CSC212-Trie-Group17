@@ -3,6 +3,8 @@
 #include <fstream>  
 #include <algorithm>
 
+// Michael M
+// Constructor for creating a node, which stores a char, if the node is a word from rootnode, and the depth/length of the node
 TrieNode::TrieNode(char nodeChar, bool isEnglishWord, int depth){
     this->nodeChar = nodeChar;
     this->isEnglishWord = isEnglishWord;
@@ -13,6 +15,11 @@ TrieNode::~TrieNode()
 {
 }
 
+// Michael M
+// Recursive function to insert node in tree
+// At the give node "node", the function will check if char to be inserted already exists as a branch.
+// If it does, it will recurse to that node, otherwise it will make a new node with the char to insert, and then recurse to it
+// Once we reach the node that is the depth of the length of nodeString (depth = length of string), we mark it with the given isEnglishWord flag, and return out of recursion
 TrieNode *TrieTree::insertPrivate(TrieNode* node, std::string nodeString, bool isEnglishWord)
 {
     //If nodeChar == nodeString[node->depth], return node
@@ -36,35 +43,53 @@ TrieNode *TrieTree::insertPrivate(TrieNode* node, std::string nodeString, bool i
     }
 }
 
+// Michael M
+// Function that will search for a given string in the tree, checking at the current node
+// If the given node has a depth equal to the length of the given string, we have reached the node to search for, return the node
+// Else, if the next char exists as a child of the current node, search at that node
+// Otherwise, the string does not exist in the tree, return a nullptr
 TrieNode *TrieTree::search(std::string nodeString, TrieNode* node)
 {
-   //if node branch array contains the current char
-        //If node depth == nodeString.size, node is found and exists, return it and print count
-        //else, search at the node for nodeString
+    // if the current node is the length of the string, we have found our string, return the node to mark it found
+    // else, if the current char of the string we are searching for exist as a branch from the current node, search from that node
     if(node->depth == nodeString.size()){
-        //std::cout << "Count found at node \"" << nodeString << "\" is " << node->branches[nodeString[node->depth]-97]->repeats << std::endl;
         return node;
     } else if (node->branches[nodeString[node->depth]-97] != nullptr){
         return search(nodeString,node->branches[nodeString[node->depth]-97]);
     }
+    // If node is not the length of the string we are searching for, and if the next char does not exist as a child of this node, the string will not exist in the tree, return a nullptr marking that it does not exist
     return nullptr;
 }
 
-std::string TrieTree::outputDOTfile(TrieNode *node, int distance, std::ofstream *outfile, std::string prefixFromLastNode)
+// Michael M
+// Recursive Function to write to a given dot file
+// The given outfile should already contain header information for the dot file
+// This function will recurse though each node of the graph, starting at the first node passed into as node, and limited to a depth of distance
+// For each node that exists from and including the given node, and each node that exist within the distance limit, it will be added to the graph file
+// The variable name in the file will be the string name plus an underscore to prevent the strings being processed as commands in the dot file
+// If the current node is a word, we add formating to signify it in the graph visulization.
+// We also check if the length of the node is 0, signifying that this is the rootnode, so we instead use a variable name of ROOTNODE_
+void TrieTree::outputDOTfile(TrieNode *node, int distance, std::ofstream *outfile, std::string prefixFromLastNode)
 {
-    std::string outputString;
+    // If we are on the rootnode, use ROOTNODE_ as a variable name, otherwise use the current node's string from the rootnode as the variable name
+    // Include the amount of times the current node is used as a prefix for other words
     if(node->depth == 0){
         *outfile << "ROOTNODE_ [label=\"" << "\0" << "," << node->repeats <<"\"]\n";
     } else {
         *outfile << prefixFromLastNode + node->nodeChar << "_ [label=\"" << prefixFromLastNode + node->nodeChar << "," << node->repeats <<"\"]\n";
     }
+
+    // If the current node is an english word, add formating to make it stand out in the graph
     if(node->isEnglishWord){
         *outfile << prefixFromLastNode + node->nodeChar << "_ [style=\"filled,dashed\",shape=box,fontsize=20.0,fillcolor=lightblue];\n";
     }
+
+    // If we have not reached out distance limit, add each branch from this node as a connection in the graph
     if(distance != 0){
         //Add current node's branches to output
         for (TrieNode *branchNode : node->branches) {
             if(branchNode != nullptr){
+                // Check if we are on rootnode
                 if (node->depth == 0){
                     *outfile << "ROOTNODE_ -- " << prefixFromLastNode + branchNode->nodeChar << "_\n";
                 } else {
@@ -72,20 +97,21 @@ std::string TrieTree::outputDOTfile(TrieNode *node, int distance, std::ofstream 
                 }
             }
         }
-        // call for each branch
+        // Call recursive function on each branch of the current node, bringing the distance limit down by one, and adding the current char to the prefix string IF it is not the rootnode
         for (TrieNode *branchNode : node->branches) {
             if(branchNode != nullptr){
                 if(node->depth == 0){
-                    *outfile << outputDOTfile(branchNode, distance-1,outfile,prefixFromLastNode);
+                    outputDOTfile(branchNode, distance-1,outfile,prefixFromLastNode);
                 } else {
-                    *outfile << outputDOTfile(branchNode, distance-1,outfile,prefixFromLastNode + node->nodeChar);
+                    outputDOTfile(branchNode, distance-1,outfile,prefixFromLastNode + node->nodeChar);
                 }
             }
         }
     }
-    return outputString;
 }
 
+// Michael M
+// Simple constructor that creates a tree with the root node being a blank node that is not a word.
 TrieTree::TrieTree()
 {
     this->root = new TrieNode('\0',false,0);
@@ -95,6 +121,9 @@ TrieTree::~TrieTree()
 {
 }
 
+// Michael M
+// Public non-recursive helper insert function to insert string into the tree
+// If the given string does not exist in the tree, we pass it into the recursive insert function to push it into the tree
 void TrieTree::insert(std::string nodeString, bool isEnglishWord)
 {
     if(!search(nodeString)){
@@ -102,6 +131,10 @@ void TrieTree::insert(std::string nodeString, bool isEnglishWord)
     }
 }
 
+// Michael M
+// Public non-recursive helper search function to start the search for a given string.
+// if the given string is blank, we know it is the rootnode, we we just return the root node
+// otherwise, we return the result from the recursive search function
 TrieNode* TrieTree::search(std::string nodeString)
 {   
     if(nodeString == ""){
@@ -110,24 +143,33 @@ TrieNode* TrieTree::search(std::string nodeString)
     return search(nodeString,root);
 }
 
+// Michael M
+// Public non-recursive helper function to start and finish the dot file
+// This will create a new file called after the prefix and distance given and add some header information
+// It will then utilize the recursive function to fill in the data for the graph
+// Finally, it will cap off the file and close the outfile
 void TrieTree::outputDOTfile(std::string prefix,int distance)
 {
+    // Start of dot file
     std::ofstream outfile ("graph_"+ prefix + "_" + std::to_string(distance) + ".gv");
     outfile << "graph TrieTreeGraph {\n";
+
+    // Store data about given prefix to find node to start at and it's prefix
     TrieNode *searchResult = search(prefix);
     std::string prefixFromLastNode = prefix; 
+
+    // If the node is not the rootnode, remove the last char from the prefix to allow correct printing in the recursive function
     if(prefix.length() != 0){
         prefixFromLastNode.pop_back();
     }
+
+    // Add data to file using recursive function
     this->outputDOTfile(searchResult,distance,&outfile,prefixFromLastNode);
+
+    // End file and close it
     outfile << "}"<<std::endl;
     outfile.close();
 }
-
-
-
-
-
 
 void TrieTree::autocompleteHelper(TrieNode* node, int length, std::string currentWord) {
     // If the length of word has been reached, print the current word
@@ -179,8 +221,9 @@ void TrieTree::findWordOfLength(int length){
     std::string str = "";
     findWordOfLength(root, length, str);
 }
+
 std::string TrieTree::getStringNode(TrieNode* node) {
-    return node->nodeString;
+    //return node->nodeString;
 }
 void TrieTree::searchForWord(std::string word){
     TrieNode* node = search(word, root);

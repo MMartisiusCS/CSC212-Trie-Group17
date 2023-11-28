@@ -4,11 +4,11 @@
 
 class TrieNode{
     private:
-        char nodeChar;
-        bool isEnglishWord;
-        TrieNode *branches [26] = {};
-        int repeats = 0;
-        int depth;
+        char nodeChar; // Character to store at node
+        bool isEnglishWord; // If this node is a english word, starting from root node
+        TrieNode *branches [26] = {}; // Storage of children/branches
+        int repeats = 0; // How many times is this used in other words.
+        int depth; // Depth of node in tree (also represents length of string starting from rootnode)
 
         friend class TrieTree;
     public:
@@ -19,9 +19,9 @@ class TrieNode{
 
 class TrieTree{
     private:
-        int nodes;
-        int words;
-        TrieNode* root;
+        int nodes; // How many nodes are in the tree
+        int words; // Hoe many words are in the tree
+        TrieNode* root; // Starting node, char is empty char
         TrieNode* insertPrivate(TrieNode* node,std::string nodeString, bool isEnglishWord);
         TrieNode* search(std::string nodeString,TrieNode* node);
         void outputDOTfile(TrieNode* node,int distance,std::ofstream* outfile,std::string prefixFromLastNode);

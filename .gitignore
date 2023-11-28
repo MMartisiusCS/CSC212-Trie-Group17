@@ -50,6 +50,8 @@ source/.vscode/launch.json
 source/main
 source/main.exe
 source/trie.exe
+source/.icon
+
 
 # General
 main.dSYM/
@@ -78,3 +80,6 @@ Icon/
 Network Trash Folder/
 Temporary Items/
 .apdisk/
+Source/.idea/modules.xml
+Source/.idea/Source.iml
+Source/.idea/vcs.xml

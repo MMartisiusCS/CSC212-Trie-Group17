@@ -174,8 +174,10 @@ void TrieTree::outputDOTfile(std::string prefix,int distance)
         prefixFromLastNode.pop_back();
     }
 
-    // Add data to file using recursive function
-    this->outputDOTfile(searchResult,distance,&outfile,prefixFromLastNode);
+    // Add data to file using recursive function if starting string exist
+    if(searchResult){
+        this->outputDOTfile(searchResult,distance,&outfile,prefixFromLastNode);
+    }
 
     // End file and close it
     outfile << "}"<<std::endl;

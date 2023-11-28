@@ -188,10 +188,11 @@ void TrieTree::outputDOTfile(std::string prefix,int distance)
 // recursive helper function that traverses all paths in the tree 
 // starting from the node of the last letter in the given suffix. 
 // Traverses a path, decrementing length every recursive call (every time it 
-// moves to a new node), adding each letter to the output string, until it 
-// reaches the length of the word specified, then printing the completed word 
-// The function then traverses the next path, repeats the same steps until
-// no more paths remain from the start node
+// moves to a new node), adding each letter to the output string, then 
+// printing the output string if the word is an english word. The function
+// continues traversing the tree (printing completed words as it goes deeper in tree) 
+// until it reaches the length specified. The function then traverses the next path, 
+// repeating the same steps until no more paths remain from the start node
 void TrieTree::autocompleteHelper(TrieNode* node, int length, std::string currentWord) {
     // If the length of word has been reached, print the current word
     if (length == 0) {

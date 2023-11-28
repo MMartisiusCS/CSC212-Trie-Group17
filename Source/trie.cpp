@@ -222,7 +222,7 @@ void TrieTree::autocomplete(std::string suffix, int length) {
     
     // If the suffix is not found, or the length is invalid, return
     if (startNode == nullptr) {
-        std::cout << "No words found." << std::endl;
+        std::cout << "Prefix does not exist in tree" << std::endl;
         return;
     } 
 

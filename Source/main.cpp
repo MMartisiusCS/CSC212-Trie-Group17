@@ -189,7 +189,7 @@ int main(int argc, char*argv[]){
                 isValidInput = false;
 
                 while (!isValidInput) {
-                    std::cout << "Enter the length of word to complete the suffix too (enter -1 for no limit): ";
+                    std::cout << "Enter the length of word to complete the suffix to (enter -1 for no limit): ";
                     std::cin >> input2;
                     std::cout << std::endl;
 

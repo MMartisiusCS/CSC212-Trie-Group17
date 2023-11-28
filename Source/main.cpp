@@ -162,7 +162,7 @@ int main(int argc, char*argv[]){
 
                     try {
                         depth = std::stoi(input2);
-                        if(depth < 0) {
+                        if(depth < 1) {
                             std::cout << "Invalid input. Please enter a positive integer" << std::endl;
                         } else {
                             isValidInput = true;
@@ -199,7 +199,7 @@ int main(int argc, char*argv[]){
 
                     try {
                         depth = std::stoi(input2);
-                        if(depth = 0) {
+                        if(depth == 0) {
                             std::cout << "Invalid input. 0 is not an valid integer" << std::endl;
                         } else {
                             isValidInput = true;

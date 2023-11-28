@@ -87,3 +87,5 @@ Source/.idea/Source.iml
 Source/.idea/vcs.xml
 Source/.idea/workspace.xml
 Source/.DS_Store
+Source/trie
+Source/trie.dSYM/Contents/Resources/DWARF/trie

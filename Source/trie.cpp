@@ -195,7 +195,6 @@ void TrieTree::outputDOTfile(std::string prefix,int distance)
 void TrieTree::autocompleteHelper(TrieNode* node, int length, std::string currentWord) {
     // If the length of word has been reached, print the current word
     if (length == 0) {
-        std::cout << currentWord << std::endl;
         return;
     }
 
@@ -203,6 +202,9 @@ void TrieTree::autocompleteHelper(TrieNode* node, int length, std::string curren
     for (int i = 0; i < 26; ++i) {
         if (node->branches[i] != nullptr) {
             char nextChar = 'a' + i;
+            if(node->branches[i]->isEnglishWord){
+                std::cout << currentWord + nextChar << std::endl;
+            }
             autocompleteHelper(node->branches[i], length - 1, currentWord + nextChar);
         }
     }

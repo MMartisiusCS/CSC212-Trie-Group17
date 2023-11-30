@@ -7,7 +7,8 @@
 
 //Set up trie with txt file
 void fileSetup(std::string fileName,TrieTree* tree) {
-    //Create: Section that creates a file reader, reads each line from the file and loads it into the tree.
+    // Nathan L
+    // Trie setup with file loading
     auto start = std::chrono::high_resolution_clock::now();
     std::ifstream infile;
     std::string line;
@@ -45,6 +46,8 @@ int main(int argc, char*argv[]){
     std::string input2; // variable used in INSERT case - causes error when initialized in switch statement
     std::string pre = ""; // variable for taking prefix in case 2 for dot file and searching for word in case 3
     
+    // Nathan L
+    // Established menu setup, error/exception checking, switch statement
     while (!end) {
         //menu - insert, dotfile, search, all of words of length, find largest, auto complete
         std::cout << "Please insert the number that corresponds to the function you wish to invoke:" << std::endl;
@@ -159,7 +162,11 @@ int main(int argc, char*argv[]){
 
                     try {
                         depth = std::stoi(input2);
-                        isValidInput = true;
+                        if(depth < 1) {
+                            std::cout << "Invalid input. Please enter a positive integer" << std::endl;
+                        } else {
+                            isValidInput = true;
+                        }
 
                     } catch (const std::invalid_argument& e) {
                         std::cout << "Invalid input. Please enter a valid integer." << std::endl;
@@ -180,25 +187,29 @@ int main(int argc, char*argv[]){
             case 6: // auto-complete
             {
                 std::cout << "Please Enter a suffix to complete: ";
-                    std::cin >> inputText;
+                std::cin >> inputText;
+                std::cout << std::endl;
+
+                isValidInput = false;
+
+                while (!isValidInput) {
+                    std::cout << "Enter the length of word to complete the suffix to (enter -1 for no limit): ";
+                    std::cin >> input2;
                     std::cout << std::endl;
 
-                    isValidInput = false;
-
-                    while (!isValidInput) {
-                        std::cout << "Enter the length of word to complete the suffix too: ";
-                        std::cin >> input2;
-                        std::cout << std::endl;
-
-                        try {
-                            depth = std::stoi(input2);
+                    try {
+                        depth = std::stoi(input2);
+                        if(depth == 0) {
+                            std::cout << "Invalid input. 0 is not an valid integer" << std::endl;
+                        } else {
                             isValidInput = true;
-
-                        } catch (const std::invalid_argument& e) {
-                            std::cout << "Invalid input. Please enter a valid integer." << std::endl;
                         }
+
+                    } catch (const std::invalid_argument& e) {
+                        std::cout << "Invalid input. Please enter a valid integer." << std::endl;
                     }
-                    
+                }
+
                 tree->autocomplete(inputText, depth);
                 break;
             }

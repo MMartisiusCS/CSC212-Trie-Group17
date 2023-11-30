@@ -1,0 +1,9 @@
+graph TrieTreeGraph {
+worde_ [label="worde,0"]
+worde_ -- worden_
+worde_ -- worder_
+worden_ [label="worden,0"]
+worden_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+worder_ [label="worder,0"]
+worder_ [style="filled,dashed",shape=box,fontsize=20.0,fillcolor=lightblue];
+}

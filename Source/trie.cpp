@@ -14,12 +14,14 @@ TrieNode::TrieNode(char nodeChar, bool isEnglishWord, int depth){
 
 TrieNode::~TrieNode()
 {
+    /*
     for(TrieNode* branchNode : this->branches){
         if(branchNode){
             branchNode->~TrieNode();
         }
     }
     delete this;
+    */
 }
 
 // Michael M
@@ -241,13 +243,20 @@ int TrieTree::getNodes()
     return this->nodes;
 }
 
+//Joseph M
+//Private method of the find word of length that calls itself recusivly 
+//Then calls itself recursively decrementing the length variable by one each time
+//When the length is reached, the appended string with each preceding character is printed out
+//This process repeats until every node of the given depth and is an english word is printed
 void TrieTree::findWordOfLength(TrieNode* node, int length, std::string str){
     if(node->nodeChar != '\0'){
         str += node->nodeChar;
     }
+    //When the target length is reached, the appended string is printed
     if (length == 0 && node->isEnglishWord){
             std::cout << str << std::endl;
         }
+    //While the target length is not met, the method calls recursively
     if (length!=0){
         for(int i = 0; i < 26; i++){
             if(node->branches[i] != nullptr){
@@ -257,18 +266,27 @@ void TrieTree::findWordOfLength(TrieNode* node, int length, std::string str){
     }
 }
 
+//Joseph M
+//public method for find word of length that calls the private
 void TrieTree::findWordOfLength(int length){
     std::string str = "";
     findWordOfLength(root, length, str);
 }
 
+//Joseph M
+//Search for word method by using the search method
+//If null pointer is returned, word does not exist within the tree
+//Otherwise, the words number of repeats is printed along with a message that the word is found
 void TrieTree::searchForWord(std::string word){
     TrieNode* node = search(word, root);
+    //Word not found in Trie
     if(node == nullptr){
         std::cout << "Word does not exist." << std::endl;
     }
+    //Word is found and the number of repeats is returned
     else{
         std::cout << "Word does exist!" << std::endl;
+        std::cout << "Number of repeats: "<< node->repeats << std::endl;
     }
 }
 std::string TrieTree::findLargest(){
@@ -297,4 +315,58 @@ std::string TrieTree::findLargestWord(TrieNode* node){
     } else {
         return std::string {node->nodeChar} + nodeSuffix;
     }
+}
+
+//Joseph M
+//public method for delete word that calls the private method
+bool TrieTree::deleteWord(const std::string &word){
+    return deletePrivate(root, word, 0);
+}
+
+//Joseph M
+//Private method to delete a given word from the tree
+//The method calls itself recursively if the next char in the input word is a branch of the current node
+//Once the last node of the word is reached, a check is done to find if the node has any children
+//If the node has no children the node is deleted and this same check is done for the preceding nodes
+//The number of repeats for any preceding words are also decremented by one
+bool TrieTree::deletePrivate(TrieNode*& node, const std::string &word, int depth) {
+    if (node == nullptr) {
+        return false;
+    }
+
+    if (depth == word.size()) {
+        if (!node->isEnglishWord) {
+            return false;
+        }
+       
+        node->isEnglishWord = false;
+        this->words--;
+        //Has children variable is created to determine wether or not the node can be deleted
+        bool hasChildren = std::any_of(std::begin(node->branches), std::end(node->branches), [](const TrieNode* child) { return child != nullptr; });
+
+        if (!hasChildren) {
+            delete node;
+            node = nullptr;
+        }
+        return true;
+    }
+
+    bool result = deletePrivate(node->branches[word[depth] - 'a'], word, depth + 1);
+
+    //removes 1 from repeats as the path to the removed word no longer exitsts
+    if (result && node->isEnglishWord) {
+        node->repeats--;
+    }
+
+    if (node->branches[word[depth] - 'a'] == nullptr) {
+        bool isLeaf = std::all_of(std::begin(node->branches), std::end(node->branches), [](const TrieNode* child) { return child == nullptr; });
+
+        if (isLeaf && !node->isEnglishWord) {
+            delete node;
+            node = nullptr;
+            return true;
+        }
+    }
+
+    return result;
 }

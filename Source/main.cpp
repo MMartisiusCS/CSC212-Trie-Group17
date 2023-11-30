@@ -58,10 +58,11 @@ int main(int argc, char*argv[]){
         std::cout << "4 - Find words of a specified length" << std::endl;
         std::cout << "5 - Find largest word" << std::endl;
         std::cout << "6 - Auto-complete word" << std::endl;
+        std::cout << "7 - Remove word from the tree" << std::endl;
         std::cout << std::endl;
 
         int depth = 0;
-        std::cout << "Enter a number 0-6: ";
+        std::cout << "Enter a number 0-7: ";
         std::cin >> inputText;
         std::cout << std::endl;
         try {
@@ -148,7 +149,7 @@ int main(int argc, char*argv[]){
                 std::cout << "Enter a word to search for: ";
                 std::cin >> pre;
                 tree->searchForWord(pre);
-                sleep(1);
+                sleep(2);
                 break;
             }
             case 4: // find words of specified length 
@@ -213,10 +214,28 @@ int main(int argc, char*argv[]){
                 tree->autocomplete(inputText, depth);
                 break;
             }
+            case 7:
+            {   
+                std::string word = "";
+                bool iseng = false;
+                while (!iseng){
+                std::cout << "Enter an English word to delete from the Trie: ";
+                std::cin >> word;
+                TrieNode* node = tree->search(word);
+                if(node == nullptr){
+                    std::cout<< "Please enter an english word" << std::endl;
+                }
+                else{
+                    iseng = true;
+                    tree->deleteWord(word);
+                }
+                }
+                break;
+            }
             default:
             {
                 // change number depending on amount of menu options
-                std::cout << "Invalid input, Please enter a number 0-6" << std::endl;
+                std::cout << "Invalid input, Please enter a number 0-7" << std::endl;
             }
         }
         } catch (const std::invalid_argument& e) {

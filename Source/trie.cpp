@@ -11,7 +11,9 @@ TrieNode::TrieNode(char nodeChar, bool isEnglishWord, int depth){
     this->depth = depth;
 }
 
-
+//Nathan R
+//Destructor to iterate through each branch of the current node and if the node
+//is not null, it deletes that nodes children and everything else below it.
 TrieNode::~TrieNode()
 {
     /*
@@ -289,6 +291,8 @@ void TrieTree::searchForWord(std::string word){
         std::cout << "Number of repeats: "<< node->repeats << std::endl;
     }
 }
+//Nathan R
+//Public method to call the private findlargestword method
 std::string TrieTree::findLargest(){
     return findLargestWord(root);
 }

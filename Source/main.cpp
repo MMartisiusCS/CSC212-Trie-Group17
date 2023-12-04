@@ -219,16 +219,16 @@ int main(int argc, char*argv[]){
                 std::string word = "";
                 bool iseng = false;
                 while (!iseng){
-                std::cout << "Enter an English word to delete from the Trie: ";
-                std::cin >> word;
-                TrieNode* node = tree->search(word);
-                if(node == nullptr){
-                    std::cout<< "Please enter an english word" << std::endl;
-                }
-                else{
-                    iseng = true;
-                    tree->deleteWord(word);
-                }
+                    std::cout << "Enter an English word to delete from the Trie: ";
+                    std::cin >> word;
+                    TrieNode* node = tree->search(word);
+                    if (node == nullptr) {
+                        std::cout<< "Please enter an english word" << std::endl;
+                    }
+                    else {
+                        iseng = true;
+                        tree->deleteWord(word);
+                    }
                 }
                 break;
             }

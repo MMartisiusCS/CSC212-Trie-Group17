@@ -19,8 +19,8 @@ class TrieNode{
 
 class TrieTree{
     private:
-        int nodes; // How many nodes are in the tree
-        int words; // Hoe many words are in the tree
+        int nodes = 0; // How many nodes are in the tree
+        int words = 0; // Hoe many words are in the tree
         TrieNode* root; // Starting node, char is empty char
         TrieNode* insertPrivate(TrieNode* node,std::string nodeString, bool isEnglishWord);
         TrieNode* search(std::string nodeString,TrieNode* node);

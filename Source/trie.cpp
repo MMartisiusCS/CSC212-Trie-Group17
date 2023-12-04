@@ -190,7 +190,7 @@ void TrieTree::outputDOTfile(std::string prefix,int distance)
 
 // Nathan L
 // recursive helper function that traverses all paths in the tree 
-// starting from the node of the last letter in the given suffix. 
+// starting from the node of the last letter in the given prefix. 
 // Traverses a path, decrementing length every recursive call (every time it 
 // moves to a new node), adding each letter to the output string, then 
 // printing the output string if the word is an english word. The function
@@ -216,23 +216,23 @@ void TrieTree::autocompleteHelper(TrieNode* node, int length, std::string curren
 }
 
 // Nathan L
-// autocomplete driver function, finds suffix in tree if it exists.
-// returns No words found if suffix does not exist, calls recursive
-// helper if suffix is found and passes the node at the end of suffix 
+// autocomplete driver function, finds prefix in tree if it exists.
+// returns No words found if prefix does not exist, calls recursive
+// helper if prefix is found and passes the node at the end of prefix 
 // as the start node. Also passes length of word to complete too and
-// the suffix as a string for outputting purposes
-void TrieTree::autocomplete(std::string suffix, int length) {
-    // Search for suffix in the tree, starting at the end node of the suffix path
-    TrieNode* startNode = search(suffix, root);
+// the prefix as a string for outputting purposes
+void TrieTree::autocomplete(std::string prefix, int length) {
+    // Search for prefix in the tree, starting at the end node of the prefix path
+    TrieNode* startNode = search(prefix, root);
     
-    // If the suffix is not found, or the length is invalid, return
+    // If the prefix is not found, or the length is invalid, return
     if (startNode == nullptr) {
         std::cout << "Prefix does not exist in tree" << std::endl;
         return;
     } 
 
     // Call the recursive helper function to find words of the specified length
-    autocompleteHelper(startNode, length, suffix);
+    autocompleteHelper(startNode, length, prefix);
 }
 
 int TrieTree::getWords()

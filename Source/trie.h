@@ -43,6 +43,6 @@ class TrieTree{
         std::string getStringNode(TrieNode* nodeString);
         void searchForWord(std::string word);
         std::string findLargest();
-        void autocomplete(std::string suffix, int length);
+        void autocomplete(std::string prefix, int length);
         bool deleteWord(const std::string &word);
 };

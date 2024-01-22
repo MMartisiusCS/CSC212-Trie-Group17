@@ -37,7 +37,7 @@ int main(int argc, char*argv[]){
     // Starting code for tree initialization
     TrieTree* tree = new TrieTree();
     std::cout << "Compiling trie..." << std::endl;
-    fileSetup("words_alpha.txt",tree);
+    //fileSetup("words_alpha.txt",tree);
     std::cout << "Trie load complete!" << std::endl;
 
     bool end = false;
@@ -104,7 +104,7 @@ int main(int argc, char*argv[]){
                     std::cout << "Please enter a word to be inserted (Valid chars are a-z ONLY): ";
                     std::cin >> input2;
                     // add expression to check for isEnglishWord
-                    tree->insert(input2, 0);
+                    tree->insert(input2,true);
                     std::cout << std::endl;
                 } else if (inputValue == 1) {
                     std::cout << "Please enter the name of the file to be inserted: ";
